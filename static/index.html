@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kramer VP-727 Web Controller</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+  
+  <style>
+    /* Design System & Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1e293b, #0f172a, #020617);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Layout Containers */
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1.25rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      color: #f59e0b;
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      background: linear-gradient(to right, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .device-info {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.15rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .device-info span {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Status Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-connecting {
+      background: rgba(245, 158, 11, 0.1);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.2);
+    }
+
+    .badge-connected {
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .badge-disconnected {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: currentColor;
+    }
+
+    .badge-connected .pulse-dot {
+      animation: pulse-ring 1.5s infinite ease-in-out;
+    }
+
+    .badge-connecting .pulse-dot {
+      animation: pulse-fade 1s infinite alternate ease-in-out;
+    }
+
+    .fw-badge {
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      font-family: monospace;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* Main Dashboard Grid */
+    main {
+      max-width: 1400px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2rem;
+    }
+
+    @media (max-width: 1100px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    }
+
+    .card-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Bus Control Rows */
+    .bus-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .bus-row-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .bus-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bus-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .bus-indicator {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #64748b;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .bus-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .bus-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Tactile Channel Buttons */
+    .channel-btn {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1.25rem 0.75rem;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      user-select: none;
+    }
+
+    .channel-btn:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #f8fafc;
+      transform: translateY(-2px);
+    }
+
+    .channel-btn:active {
+      transform: translateY(1px);
+    }
+
+    .channel-number {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #475569;
+      background: rgba(0, 0, 0, 0.2);
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .channel-icon {
+      width: 20px;
+      height: 20px;
+      color: #64748b;
+      transition: color 0.2s;
+    }
+
+    .channel-btn:hover .channel-icon {
+      color: #cbd5e1;
+    }
+
+    .channel-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* Program Bus Styling (Live Cut) */
+    .bus-program .channel-btn.active {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      border-color: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .bus-program .channel-btn.active .channel-icon {
+      color: #ffffff;
+    }
+
+    .bus-program .channel-btn.active .channel-number {
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Preview Bus Styling (Staging) */
+    .bus-preview .channel-btn.active {
+      background: linear-gradient(135deg, #10b981, #047857);
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .bus-preview .channel-btn.active .channel-icon {
+      color: #ffffff;
+    }
+
+    .bus-preview .channel-btn.active .channel-number {
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Control Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* TAKE Transition Button */
+    .take-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .take-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border: 1px solid #f59e0b;
+      border-radius: 12px;
+      padding: 1.5rem;
+      color: #0f172a;
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .take-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 80%);
+      pointer-events: none;
+    }
+
+    .take-btn:hover {
+      background: linear-gradient(135deg, #fbbf24, #ea580c);
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .take-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+    }
+
+    .take-icon {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2.5px;
+    }
+
+    /* Custom Resolution Utilities */
+    .resolution-profile-selector {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 0.6rem;
+      color: #cbd5e1;
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .resolution-profile-selector option {
+      background: #0f172a;
+      color: #cbd5e1;
+    }
+
+    .resolution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .resolution-param {
+      background: rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .param-name {
+      font-size: 0.65rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    .param-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      font-family: monospace;
+    }
+
+    .resolution-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.75rem;
+      color: #cbd5e1;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .resolution-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .resolution-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Screen Overlay for Disconnected State */
+    .offline-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      border-radius: 15px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .offline-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .overlay-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f87171;
+    }
+
+    .overlay-desc {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-align: center;
+      max-width: 250px;
+    }
+
+    /* Animations */
+    @keyframes pulse-slow {
+      0%, 100% {
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(0.96);
+      }
+    }
+
+    @keyframes pulse-fade {
+      from {
+        opacity: 0.3;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+      }
+    }
+
+    /* Footer styling */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #475569;
+      margin-top: auto;
+    }
+
+    /* Utility disabled styling */
+    .controls-disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Navigation Tab Pills CSS */
+    .nav-pills {
+      display: flex;
+      gap: 0.25rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      align-items: center;
+    }
+    .nav-pill {
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 0.85rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-pill.active {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .nav-pill:hover:not(.active) {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.03);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <div class="logo-container">
+          <i data-lucide="sliders" class="logo-icon"></i>
+          <div>
+            <h1>Kramer VP-727 Controller</h1>
+            <div class="device-info">
+              <span id="scaler-ip-info"><i data-lucide="network"></i> IP: --</span>
+              <span id="firmware-gen-info"><i data-lucide="cpu"></i> Firmware: --</span>
+            </div>
+          </div>
+        </div>
+        <!-- Navigation Tab Pills -->
+        <nav class="nav-pills" style="margin-left: 2.5rem;">
+          <button id="nav-dashboard" class="nav-pill active">Dashboard</button>
+          <button id="nav-settings" class="nav-pill">Configure Inputs</button>
+        </nav>
+      </div>
+      <div class="header-right">
+        <div id="connection-badge" class="badge badge-disconnected">
+          <div class="pulse-dot"></div>
+          <span id="connection-status-text">Disconnected</span>
+        </div>
+        <div id="fw-generation" class="fw-badge">GEN --</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="dashboard-view">
+    <!-- Left Panel: Input Matrix -->
+    <section class="bus-section">
+      <div class="card" id="matrix-card">
+        <!-- Overlay shown when not connected to back-end or scaler is offline -->
+        <div class="offline-overlay" id="matrix-offline-overlay">
+          <i data-lucide="wifi-off" style="width: 40px; height: 40px; color: #ef4444;"></i>
+          <p class="overlay-title">Connection Degraded</p>
+          <p class="overlay-desc">Lost communication with the back-end control daemon or the physical scaler.</p>
+        </div>
+
+        <div class="card-title">
+          <i data-lucide="grid"></i> Switcher Input Matrix
+        </div>
+
+        <div class="bus-row-container" style="margin-bottom: 2rem;">
+          <div class="bus-header">
+            <span class="bus-name" style="color: #ef4444;"><i data-lucide="play-circle"></i> Program Bus (Live)</span>
+            <span class="bus-indicator">Destination 1</span>
+          </div>
+          <div class="bus-grid bus-program" id="program-bus-grid">
+            <!-- Buttons dynamically populated by JS -->
+          </div>
+        </div>
+
+        <div class="bus-row-container">
+          <div class="bus-header">
+            <span class="bus-name" style="color: #10b981;"><i data-lucide="eye"></i> Preview Bus (Staging)</span>
+            <span class="bus-indicator">Destination 2</span>
+          </div>
+          <div class="bus-grid bus-preview" id="preview-bus-grid">
+            <!-- Buttons dynamically populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Panel: Take Transition and Custom Resolutions -->
+    <section class="sidebar">
+      <!-- TAKE Transition Panel -->
+      <div class="card take-container">
+        <button class="take-btn" id="take-transition-btn" style="margin-bottom: 0.75rem;">
+          <i data-lucide="zap" class="take-icon"></i>
+          TAKE
+        </button>
+        <button class="resolution-btn" id="toggle-osd-btn" style="width: 100%; justify-content: center;">
+          <i data-lucide="menu" style="width: 16px; height: 16px;"></i>
+          Toggle OSD Menu
+        </button>
+      </div>
+
+      <!-- Output Resolution Card -->
+      <div class="card" id="output-res-card">
+        <div class="offline-overlay" id="output-res-offline-overlay"></div>
+        <div class="card-title">
+          <i data-lucide="tv"></i> Output Resolution
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.4rem;">PREVIEW BUS RESOLUTION</label>
+          <select class="resolution-profile-selector" id="preview-res-select" style="margin-bottom: 0.75rem; width: 100%;">
+            <option value="0">640x480</option>
+            <option value="1">800x600</option>
+            <option value="2">832x624</option>
+            <option value="3">852x480</option>
+            <option value="4">1024x768</option>
+            <option value="5">1280x720</option>
+            <option value="6">1280x768</option>
+            <option value="7">1280x1024</option>
+            <option value="8">1366x768</option>
+            <option value="9">1365x1024</option>
+            <option value="10">1400x1050</option>
+            <option value="11">1600x1200</option>
+            <option value="12">480p</option>
+            <option value="13">576p</option>
+            <option value="14">720p</option>
+            <option value="15">1080i</option>
+            <option value="16" selected>1080p</option>
+            <option value="17">User define</option>
+          </select>
+        </div>
+ 
+        <div>
+          <label style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.4rem;">PROGRAM BUS RESOLUTION</label>
+          <select class="resolution-profile-selector" id="program-res-select" style="margin-bottom: 0; width: 100%;">
+            <option value="0">640x480</option>
+            <option value="1">800x600</option>
+            <option value="2">832x624</option>
+            <option value="3">852x480</option>
+            <option value="4">1024x768</option>
+            <option value="5">1280x720</option>
+            <option value="6">1280x768</option>
+            <option value="7">1280x1024</option>
+            <option value="8">1366x768</option>
+            <option value="9">1365x1024</option>
+            <option value="10">1400x1050</option>
+            <option value="11">1600x1200</option>
+            <option value="12">480p</option>
+            <option value="13">576p</option>
+            <option value="14">720p</option>
+            <option value="15">1080i</option>
+            <option value="16" selected>1080p</option>
+            <option value="17">User define</option>
+          </select>
+        </div>
+      </div>
+ 
+      <!-- Custom Resolution Utility -->
+      <div class="card" id="resolution-card">
+        <div class="offline-overlay" id="resolution-offline-overlay"></div>
+        <div class="card-title">
+          <i data-lucide="monitor"></i> Custom Resolution timing
+        </div>
+        
+        <label for="resolution-profile" style="display: none;"></label>
+        <select class="resolution-profile-selector" id="resolution-profile">
+          <!-- Dynamically populated from config.yaml profiles -->
+        </select>
+
+        <div class="resolution-grid">
+          <div class="resolution-param">
+            <span class="param-name">H Active</span>
+            <span class="param-value" id="param-hactive">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">V Active</span>
+            <span class="param-value" id="param-vactive">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">H Total</span>
+            <span class="param-value" id="param-htotal">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">V Total</span>
+            <span class="param-value" id="param-vtotal">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">H Sync</span>
+            <span class="param-value" id="param-hsync">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">V Sync</span>
+            <span class="param-value" id="param-vsync">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">H Start</span>
+            <span class="param-value" id="param-hstart">--</span>
+          </div>
+          <div class="resolution-param">
+            <span class="param-name">V Start</span>
+            <span class="param-value" id="param-vstart">--</span>
+          </div>
+        </div>
+
+        <button class="resolution-btn" id="sync-resolution-btn">
+          <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i>
+          Sync Custom Timings
+        </button>
+      </div>
+    </section>
+  </main>
+ 
+  <!-- Settings Content (Configure Inputs) -->
+  <main id="settings-view" style="display: none; max-width: 900px; margin: 2rem auto; padding: 0 2rem; width: 100%;">
+    <div class="card" style="width: 100%;">
+      <!-- Overlay shown when not connected to back-end -->
+      <div class="offline-overlay" id="settings-offline-overlay"></div>
+      
+      <div class="card-title">
+        <i data-lucide="edit-3"></i> Configure Input Labels and Icons
+      </div>
+ 
+      <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">
+        Modify the friendly display labels and icons for each of the 8 physical matrix inputs. These settings will be saved to config.yaml on the server.
+      </p>
+ 
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;" id="settings-inputs-list">
+        <!-- Will be dynamically populated with 8 input configuration rows by JS -->
+      </div>
+ 
+      <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+        <button class="resolution-btn" id="cancel-settings-btn" style="width: auto; padding: 0.6rem 1.5rem; background: transparent; border-color: rgba(255,255,255,0.06);">
+          Cancel
+        </button>
+        <button class="take-btn" id="save-settings-btn" style="width: auto; padding: 0.6rem 1.5rem; font-size: 0.85rem; font-weight: 700; color: #0f172a; border-radius: 8px;">
+          Save Labels & Icons
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    Kramer VP-727 Web Controller Bridge &bull; Local Interface
+  </footer>
+
+  <script>
+    // Global Application State Caches
+    let configData = null;
+    let ws = null;
+    let wsReconnectTimeout = null;
+
+    // Elements
+    const elConnectionBadge = document.getElementById("connection-badge");
+    const elConnectionStatusText = document.getElementById("connection-status-text");
+    const elFwGenText = document.getElementById("fw-generation");
+    const elScalerIpInfo = document.getElementById("scaler-ip-info");
+    const elFirmwareGenInfo = document.getElementById("firmware-gen-info");
+
+    const elProgramBusGrid = document.getElementById("program-bus-grid");
+    const elPreviewBusGrid = document.getElementById("preview-bus-grid");
+    const elTakeBtn = document.getElementById("take-transition-btn");
+    const elOsdBtn = document.getElementById("toggle-osd-btn");
+    let osdState = false;
+ 
+    const elPreviewResSelect = document.getElementById("preview-res-select");
+    const elProgramResSelect = document.getElementById("program-res-select");
+    const elOutputResOverlay = document.getElementById("output-res-offline-overlay");
+ 
+    const elResProfileSelect = document.getElementById("resolution-profile");
+    const elSyncResBtn = document.getElementById("sync-resolution-btn");
+ 
+    const elMatrixOverlay = document.getElementById("matrix-offline-overlay");
+    const elResOverlay = document.getElementById("resolution-offline-overlay");
+ 
+    // Settings Navigation & Forms Elements
+    const navDashboard = document.getElementById("nav-dashboard");
+    const navSettings = document.getElementById("nav-settings");
+    const viewDashboard = document.getElementById("dashboard-view");
+    const viewSettings = document.getElementById("settings-view");
+    const cancelSettingsBtn = document.getElementById("cancel-settings-btn");
+    const saveSettingsBtn = document.getElementById("save-settings-btn");
+    const settingsOfflineOverlay = document.getElementById("settings-offline-overlay");
+
+    // Icon helper maps icon name from config.yaml -> Lucide icon name
+    function getLucideIconName(configIcon) {
+      const iconMap = {
+        'desktop': 'monitor',
+        'terminal': 'terminal',
+        'flask': 'flask-conical',
+        'help': 'help-circle'
+      };
+      return iconMap[configIcon] || 'help-circle';
+    }
+
+    // Connect WebSocket
+    function connectWebSocket() {
+      if (ws) {
+        ws.close();
+      }
+
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const host = window.location.host;
+      const wsUrl = `${protocol}//${host}/api/v1/ws`;
+
+      console.log(`Establishing WebSocket connection to: ${wsUrl}`);
+      ws = new WebSocket(wsUrl);
+
+      ws.onopen = () => {
+        console.log("WebSocket connected.");
+        clearTimeout(wsReconnectTimeout);
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          handleStateUpdate(data);
+        } catch (err) {
+          console.error("Failed to parse WebSocket message:", err);
+        }
+      };
+
+      ws.onclose = () => {
+        console.warn("WebSocket connection closed. Attempting reconnect...");
+        setUiStateDisconnected();
+        // Retry in 3 seconds
+        wsReconnectTimeout = setTimeout(connectWebSocket, 3000);
+      };
+
+      ws.onerror = (err) => {
+        console.error("WebSocket error:", err);
+        ws.close();
+      };
+    }
+
+    // Handle incoming state update payload
+    function handleStateUpdate(data) {
+      // 1. Connection Badge & Info
+      updateConnectionStatus(data.status);
+      
+      const ip = data.hardware?.ip || "--";
+      const port = data.hardware?.port || "";
+      elScalerIpInfo.innerHTML = `<i data-lucide="network"></i> IP: ${ip}${port ? ':' + port : ''}`;
+      
+      const gen = data.hardware?.firmware_generation;
+      const genStr = gen !== null && gen !== undefined ? `GEN ${gen}` : "GEN --";
+      elFwGenText.innerText = genStr;
+      elFirmwareGenInfo.innerHTML = `<i data-lucide="cpu"></i> Firmware: ${genStr}`;
+
+      // Disable/Dim controls if status is not connected
+      const isConnected = data.status === "connected";
+      toggleControlsDisabled(!isConnected);
+
+      // Save config and render dynamic grids if config returned
+      if (data.config) {
+        configData = data.config;
+        renderMatrixInputs(data.config.matrix.inputs);
+        populateResolutionProfiles(data.config.custom_resolutions);
+      }
+
+      // Highlight active Program and Preview sources
+      updateActiveSources(data.state?.program_source, data.state?.preview_source);
+
+      // Re-initialize Lucide icons in case new buttons got rendered
+      lucide.createIcons();
+    }
+
+    function setUiStateDisconnected() {
+      updateConnectionStatus("disconnected");
+      toggleControlsDisabled(true);
+    }
+
+    function updateConnectionStatus(status) {
+      elConnectionBadge.className = "badge";
+      if (status === "connected") {
+        elConnectionBadge.classList.add("badge-connected");
+        elConnectionStatusText.innerText = "Connected";
+      } else if (status === "connecting") {
+        elConnectionBadge.classList.add("badge-connecting");
+        elConnectionStatusText.innerText = "Connecting";
+      } else {
+        elConnectionBadge.classList.add("badge-disconnected");
+        elConnectionStatusText.innerText = "Disconnected";
+      }
+    }
+
+    function toggleControlsDisabled(disabled) {
+      if (disabled) {
+        elMatrixOverlay.classList.add("active");
+        elResOverlay.classList.add("active");
+        elOutputResOverlay.classList.add("active");
+        settingsOfflineOverlay.classList.add("active");
+        elTakeBtn.classList.add("controls-disabled");
+        elSyncResBtn.classList.add("controls-disabled");
+        elOsdBtn.classList.add("controls-disabled");
+      } else {
+        elMatrixOverlay.classList.remove("active");
+        elResOverlay.classList.remove("active");
+        elOutputResOverlay.classList.remove("active");
+        settingsOfflineOverlay.classList.remove("active");
+        elTakeBtn.classList.remove("controls-disabled");
+        elSyncResBtn.classList.remove("controls-disabled");
+        elOsdBtn.classList.remove("controls-disabled");
+      }
+    }
+
+    // Render Matrix Row Buttons dynamically
+    let renderedInputsHash = "";
+    function renderMatrixInputs(inputs) {
+      // JSON representation of inputs to detect label or icon changes
+      const inputsString = JSON.stringify(inputs);
+      if (renderedInputsHash === inputsString) return; // Skip if already rendered identical inputs
+      
+      elProgramBusGrid.innerHTML = "";
+      elPreviewBusGrid.innerHTML = "";
+
+      for (let i = 1; i <= 8; i++) {
+        const inputData = inputs[i] || { label: `Input ${i}`, icon: 'help' };
+        const lucideIcon = getLucideIconName(inputData.icon);
+
+        // Program Button
+        const pgBtn = document.createElement("button");
+        pgBtn.className = "channel-btn";
+        pgBtn.id = `program-btn-${i}`;
+        pgBtn.innerHTML = `
+          <div class="channel-number">${i}</div>
+          <i data-lucide="${lucideIcon}" class="channel-icon"></i>
+          <div class="channel-label">${escapeHtml(inputData.label)}</div>
+        `;
+        pgBtn.onclick = () => routeChannel(i, 'program');
+        elProgramBusGrid.appendChild(pgBtn);
+
+        // Preview Button
+        const pvBtn = document.createElement("button");
+        pvBtn.className = "channel-btn";
+        pvBtn.id = `preview-btn-${i}`;
+        pvBtn.innerHTML = `
+          <div class="channel-number">${i}</div>
+          <i data-lucide="${lucideIcon}" class="channel-icon"></i>
+          <div class="channel-label">${escapeHtml(inputData.label)}</div>
+        `;
+        pvBtn.onclick = () => routeChannel(i, 'preview');
+        elPreviewBusGrid.appendChild(pvBtn);
+      }
+
+      renderedInputsHash = inputsString;
+    }
+
+    // Update active highlight classes
+    function updateActiveSources(programSource, previewSource) {
+      // Clean previous active states
+      document.querySelectorAll(".bus-program .channel-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".bus-preview .channel-btn").forEach(btn => btn.classList.remove("active"));
+
+      // Set current active states
+      if (programSource >= 1 && programSource <= 8) {
+        const pgActive = document.getElementById(`program-btn-${programSource}`);
+        if (pgActive) pgActive.classList.add("active");
+      }
+      if (previewSource >= 1 && previewSource <= 8) {
+        const pvActive = document.getElementById(`preview-btn-${previewSource}`);
+        if (pvActive) pvActive.classList.add("active");
+      }
+    }
+
+    // Populate Resolution profile dropdown list
+    let profilesPopulated = false;
+    function populateResolutionProfiles(resConfig) {
+      if (profilesPopulated) return;
+
+      elResProfileSelect.innerHTML = "";
+      const profiles = resConfig.profiles || {};
+      
+      for (const [profileId, profile] of Object.entries(profiles)) {
+        const opt = document.createElement("option");
+        opt.value = profileId;
+        opt.innerText = profile.label || profileId;
+        if (profileId === resConfig.active_profile) {
+          opt.selected = true;
+        }
+        elResProfileSelect.appendChild(opt);
+      }
+
+      // Initial timing parameter layout render
+      updateResolutionDetails(elResProfileSelect.value);
+      profilesPopulated = true;
+    }
+
+    // Handle Resolution profile select change event
+    function updateResolutionDetails(profileId) {
+      if (!configData || !configData.custom_resolutions?.profiles[profileId]) return;
+
+      const profile = configData.custom_resolutions.profiles[profileId];
+      
+      document.getElementById("param-htotal").innerText = profile.htotal;
+      document.getElementById("param-hactive").innerText = profile.hactive;
+      document.getElementById("param-hsync").innerText = profile.hsync;
+      document.getElementById("param-hstart").innerText = profile.hstart;
+      document.getElementById("param-vtotal").innerText = profile.vtotal;
+      document.getElementById("param-vactive").innerText = profile.vactive;
+      document.getElementById("param-vsync").innerText = profile.vsync;
+      document.getElementById("param-vstart").innerText = profile.vstart;
+    }
+
+    elResProfileSelect.onchange = (e) => {
+      updateResolutionDetails(e.target.value);
+    };
+
+    // REST API call: Route channel to bus
+    function routeChannel(sourceInput, destinationBus) {
+      console.log(`API Route: Input ${sourceInput} -> ${destinationBus}`);
+      
+      fetch('/api/v1/route', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source_input: sourceInput,
+          destination_bus: destinationBus
+        })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Route response:", data);
+      })
+      .catch(err => {
+        console.error("Routing request failed:", err);
+      });
+    }
+
+    // REST API call: Trigger TAKE transition
+    elTakeBtn.onclick = () => {
+      console.log("API TAKE transition triggered");
+      
+      fetch('/api/v1/transition', {
+        method: 'POST'
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Transition response:", data);
+      })
+      .catch(err => {
+        console.error("Transition request failed:", err);
+      });
+    };
+
+    // REST API call: Sync Custom Timings to hardware EEPROM
+    elSyncResBtn.onclick = () => {
+      const selectedProfile = elResProfileSelect.value;
+      if (!configData || !configData.custom_resolutions?.profiles[selectedProfile]) {
+        console.error("No valid resolution profile selected to sync.");
+        return;
+      }
+
+      const p = configData.custom_resolutions.profiles[selectedProfile];
+      console.log(`API Custom Resolution: Syncing timing profile "${selectedProfile}"`);
+
+      fetch('/api/v1/resolution/custom', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          htotal: p.htotal,
+          hactive: p.hactive,
+          hsync: p.hsync,
+          hstart: p.hstart,
+          vtotal: p.vtotal,
+          vactive: p.vactive,
+          vsync: p.vsync,
+          vstart: p.vstart
+        })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Custom resolution timing response:", data);
+        alert(`Successfully synchronized timing parameters for "${p.label}"!`);
+      })
+      .catch(err => {
+        console.error("Sync resolution request failed:", err);
+        alert("Failed to synchronize custom resolution parameters.");
+      });
+    };
+
+    // REST API call: Toggle OSD Menu state
+    elOsdBtn.onclick = () => {
+      osdState = !osdState;
+      console.log(`API OSD: Setting state to ${osdState}`);
+
+      fetch('/api/v1/osd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ state: osdState })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("OSD toggle response:", data);
+        if (osdState) {
+          elOsdBtn.style.background = "rgba(245, 158, 11, 0.2)";
+          elOsdBtn.style.borderColor = "rgba(245, 158, 11, 0.5)";
+          elOsdBtn.style.color = "#fbbf24";
+        } else {
+          elOsdBtn.style.background = "";
+          elOsdBtn.style.borderColor = "";
+          elOsdBtn.style.color = "";
+        }
+      })
+      .catch(err => {
+        console.error("OSD toggle request failed:", err);
+        osdState = !osdState; // revert on error
+      });
+    };
+ 
+    // REST API call: Set output resolution of a bus
+    elPreviewResSelect.onchange = (e) => {
+      const resId = parseInt(e.target.value);
+      console.log(`API Output Resolution: Setting Preview to ${resId}`);
+      sendOutputResolutionRequest('preview', resId);
+    };
+ 
+    elProgramResSelect.onchange = (e) => {
+      const resId = parseInt(e.target.value);
+      console.log(`API Output Resolution: Setting Program to ${resId}`);
+      sendOutputResolutionRequest('program', resId);
+    };
+ 
+    function sendOutputResolutionRequest(bus, resolutionId) {
+      fetch('/api/v1/resolution/output', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bus: bus,
+          resolution_id: resolutionId
+        })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Output resolution set response:", data);
+      })
+      .catch(err => {
+        console.error("Output resolution request failed:", err);
+      });
+    }
+ 
+    // Navigation Tabs Routing
+    navDashboard.onclick = () => showView('dashboard');
+    navSettings.onclick = () => showView('settings');
+    cancelSettingsBtn.onclick = () => showView('dashboard');
+ 
+    function showView(viewName) {
+      if (viewName === 'dashboard') {
+        navDashboard.classList.add('active');
+        navSettings.classList.remove('active');
+        viewDashboard.style.display = 'grid';
+        viewSettings.style.display = 'none';
+      } else {
+        navDashboard.classList.remove('active');
+        navSettings.classList.add('active');
+        viewDashboard.style.display = 'none';
+        viewSettings.style.display = 'block';
+        populateSettingsForm();
+      }
+    }
+ 
+    // Populate Settings form with current config
+    function populateSettingsForm() {
+      if (!configData) return;
+      const container = document.getElementById("settings-inputs-list");
+      container.innerHTML = "";
+ 
+      for (let i = 1; i <= 8; i++) {
+        const input = configData.matrix.inputs[i] || { label: "", icon: "help" };
+        const row = document.createElement("div");
+        row.style.display = "flex";
+        row.style.alignItems = "center";
+        row.style.gap = "1rem";
+        row.style.background = "rgba(0,0,0,0.15)";
+        row.style.padding = "0.75rem 1rem";
+        row.style.borderRadius = "8px";
+        row.style.border = "1px solid rgba(255,255,255,0.03)";
+ 
+        row.innerHTML = `
+          <div style="font-weight: 700; font-size: 0.9rem; color: #fbbf24; width: 80px;">Input ${i}</div>
+          <div style="flex-grow: 1;">
+            <input type="text" id="edit-label-${i}" class="resolution-profile-selector" style="margin-bottom:0; width: 100%;" value="${escapeHtml(input.label)}" placeholder="Enter Label for Input ${i}" />
+          </div>
+          <div>
+            <select id="edit-icon-${i}" class="resolution-profile-selector" style="margin-bottom:0; width: 140px;">
+              <option value="desktop" ${input.icon === 'desktop' ? 'selected' : ''}>Desktop (Monitor)</option>
+              <option value="terminal" ${input.icon === 'terminal' ? 'selected' : ''}>Terminal (CLI)</option>
+              <option value="flask" ${input.icon === 'flask' ? 'selected' : ''}>Flask (Test Bench)</option>
+              <option value="help" ${input.icon === 'help' ? 'selected' : ''}>Help (Unassigned)</option>
+            </select>
+          </div>
+        `;
+        container.appendChild(row);
+      }
+      lucide.createIcons();
+    }
+ 
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+ 
+    // Save Input Configurations back to config.yaml
+    saveSettingsBtn.onclick = () => {
+      const payload = {};
+      for (let i = 1; i <= 8; i++) {
+        const labelVal = document.getElementById(`edit-label-${i}`).value.trim() || `Input ${i}`;
+        const iconVal = document.getElementById(`edit-icon-${i}`).value;
+        payload[i] = {
+          label: labelVal,
+          icon: iconVal
+        };
+      }
+ 
+      console.log("Saving new input configurations:", payload);
+      saveSettingsBtn.disabled = true;
+      saveSettingsBtn.innerText = "Saving...";
+ 
+      fetch('/api/v1/config/inputs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Save configuration response:", data);
+        saveSettingsBtn.disabled = false;
+        saveSettingsBtn.innerText = "Save Labels & Icons";
+        showView('dashboard');
+      })
+      .catch(err => {
+        console.error("Save config request failed:", err);
+        alert("Failed to save input configuration settings.");
+        saveSettingsBtn.disabled = false;
+        saveSettingsBtn.innerText = "Save Labels & Icons";
+      });
+    };
+ 
+    // Initialize Page
+    lucide.createIcons();
+    connectWebSocket();
+  </script>
+</body>
+</html>
