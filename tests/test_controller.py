@@ -54,7 +54,7 @@ async def test_api_route(monkeypatch: pytest.MonkeyPatch) -> None:
     )
     assert response.status_code == 202
     assert response.json()["status"] == "acknowledged"
-    mock_send.assert_awaited_once_with("Y 0 1 3 2")
+    mock_send.assert_awaited_once_with("Y 0 42 2")
 
     # Route channel 1 to program bus (destination bus 1)
     mock_send.reset_mock()
@@ -64,7 +64,7 @@ async def test_api_route(monkeypatch: pytest.MonkeyPatch) -> None:
     )
     assert response.status_code == 202
     assert response.json()["status"] == "acknowledged"
-    mock_send.assert_awaited_once_with("Y 0 1 1 1")
+    mock_send.assert_awaited_once_with("Y 0 94 0")
 
 
 @pytest.mark.anyio
@@ -238,3 +238,21 @@ async def test_api_save_inputs_config(
         saved_data = yaml.safe_load(f)
     assert saved_data["matrix"]["inputs"][1]["label"] == "Cam 1"
     assert saved_data["matrix"]["inputs"][1]["icon"] == "desktop"
+
+
+@pytest.mark.anyio
+async def test_set_input_type(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Validate setting the input signal type via POST /api/v1/input/type."""
+    mock_send = AsyncMock()
+    monkeypatch.setattr(scaler_conn, "send_command", mock_send)
+
+    payload = {
+        "bus": "preview",
+        "type_id": 8,
+    }
+    response = client.post("/api/v1/input/type", json=payload)
+    assert response.status_code == 200
+    assert response.json()["status"] == "success"
+    assert response.json()["bus"] == "preview"
+    assert response.json()["type_id"] == 8
+    mock_send.assert_called_once_with("Y 0 43 8")

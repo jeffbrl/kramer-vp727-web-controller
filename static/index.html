@@ -757,6 +757,42 @@
             <option value="17">User define</option>
           </select>
         </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.06); margin: 1.5rem 0;" />
+
+        <div class="card-title" style="margin-bottom: 1rem;">
+          <i data-lucide="sliders"></i> Input Signal Type
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.4rem;">PREVIEW INPUT SIGNAL TYPE</label>
+          <select class="resolution-profile-selector" id="preview-type-select" style="margin-bottom: 0.75rem; width: 100%;">
+            <option value="0">RGBHV</option>
+            <option value="1">RGBS (PC)</option>
+            <option value="2">RGsB (PC)</option>
+            <option value="3">HD Component (YPbPr)</option>
+            <option value="4">SD Component (YUV)</option>
+            <option value="5">RGBS (Video)</option>
+            <option value="6">RGsB (Video)</option>
+            <option value="7">Y/C (S-Video)</option>
+            <option value="8">Video (Composite)</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.4rem;">PROGRAM INPUT SIGNAL TYPE</label>
+          <select class="resolution-profile-selector" id="program-type-select" style="margin-bottom: 0; width: 100%;">
+            <option value="0">RGBHV</option>
+            <option value="1">RGBS (PC)</option>
+            <option value="2">RGsB (PC)</option>
+            <option value="3">HD Component (YPbPr)</option>
+            <option value="4">SD Component (YUV)</option>
+            <option value="5">RGBS (Video)</option>
+            <option value="6">RGsB (Video)</option>
+            <option value="7">Y/C (S-Video)</option>
+            <option value="8">Video (Composite)</option>
+          </select>
+        </div>
       </div>
  
       <!-- Custom Resolution Utility -->
@@ -869,6 +905,8 @@
  
     const elPreviewResSelect = document.getElementById("preview-res-select");
     const elProgramResSelect = document.getElementById("program-res-select");
+    const elPreviewTypeSelect = document.getElementById("preview-type-select");
+    const elProgramTypeSelect = document.getElementById("program-type-select");
     const elOutputResOverlay = document.getElementById("output-res-offline-overlay");
  
     const elResProfileSelect = document.getElementById("resolution-profile");
@@ -964,6 +1002,16 @@
 
       // Highlight active Program and Preview sources
       updateActiveSources(data.state?.program_source, data.state?.preview_source);
+
+      // Sync active Program and Preview input signal types
+      if (data.state) {
+        if (data.state.program_input_type !== undefined && data.state.program_input_type !== null) {
+          elProgramTypeSelect.value = data.state.program_input_type;
+        }
+        if (data.state.preview_input_type !== undefined && data.state.preview_input_type !== null) {
+          elPreviewTypeSelect.value = data.state.preview_input_type;
+        }
+      }
 
       // Re-initialize Lucide icons in case new buttons got rendered
       lucide.createIcons();
@@ -1257,7 +1305,41 @@
         console.error("Output resolution request failed:", err);
       });
     }
- 
+
+    // REST API call: Set input signal type of a bus
+    elPreviewTypeSelect.onchange = (e) => {
+      const typeId = parseInt(e.target.value);
+      console.log(`API Input Type: Setting Preview to ${typeId}`);
+      sendInputTypeRequest('preview', typeId);
+    };
+
+    elProgramTypeSelect.onchange = (e) => {
+      const typeId = parseInt(e.target.value);
+      console.log(`API Input Type: Setting Program to ${typeId}`);
+      sendInputTypeRequest('program', typeId);
+    };
+
+    function sendInputTypeRequest(bus, typeId) {
+      fetch('/api/v1/input/type', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bus: bus,
+          type_id: typeId
+        })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Server returned status ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Input type set response:", data);
+      })
+      .catch(err => {
+        console.error("Input type request failed:", err);
+      });
+    }
+
     // Navigation Tabs Routing
     navDashboard.onclick = () => showView('dashboard');
     navSettings.onclick = () => showView('settings');

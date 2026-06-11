@@ -78,6 +78,8 @@ class WebSocketManager:
                 "program_source": scaler_conn.program_source,
                 "preview_source": scaler_conn.preview_source,
                 "panel_locked": scaler_conn.panel_locked,
+                "program_input_type": scaler_conn.program_input_type,
+                "preview_input_type": scaler_conn.preview_input_type,
             },
             "config": {
                 "matrix": {
@@ -188,6 +190,23 @@ class OutputResolutionRequest(BaseModel):
     )
 
 
+class InputTypeRequest(BaseModel):
+    """API model for setting the input signal type of a bus (Program or Preview)."""
+
+    bus: Literal["program", "preview"] = Field(
+        ...,
+        description="Target destination bus",
+        examples=["preview"],
+    )
+    type_id: int = Field(
+        ...,
+        ge=0,
+        le=8,
+        description="Input signal type ID (0=RGBHV, 1=RGBS(PC), 2=RGsB(PC), 3=HD Component, 4=SD Component, 5=RGBS(Video), 6=RGsB(Video), 7=Y/C, 8=Video)",
+        examples=[8],
+    )
+
+
 @app.get("/api/v1/status")
 async def get_status() -> dict:
     """Fetch connection status, cached firmware generation, and state configurations."""
@@ -197,8 +216,9 @@ async def get_status() -> dict:
 @app.post("/api/v1/route", status_code=202)
 async def route_channel(payload: RouteRequest) -> dict:
     """Route input channel to specified destination bus (program or preview)."""
-    bus_id = 1 if payload.destination_bus == "program" else 2
-    cmd = f"Y 0 1 {payload.source_input} {bus_id}"
+    ch_val = payload.source_input - 1
+    cmd_id = 94 if payload.destination_bus == "program" else 42
+    cmd = f"Y 0 {cmd_id} {ch_val}"
 
     try:
         await scaler_conn.send_command(cmd)
@@ -286,6 +306,28 @@ async def set_output_resolution(payload: OutputResolutionRequest) -> dict:
         "command_sent": cmd,
         "bus": payload.bus,
         "resolution_id": payload.resolution_id,
+    }
+
+
+@app.post("/api/v1/input/type")
+async def set_input_type(payload: InputTypeRequest) -> dict:
+    """Set the input signal type for the currently routed channel on Program or Preview bus."""
+    cmd_id = 95 if payload.bus == "program" else 43
+    cmd = f"Y 0 {cmd_id} {payload.type_id}"
+
+    try:
+        await scaler_conn.send_command(cmd)
+    except ConnectionError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+    except Exception as e:
+        logger.exception("Failed to write input type command: %s", e)
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+    return {
+        "command_sent": cmd,
+        "bus": payload.bus,
+        "type_id": payload.type_id,
+        "status": "success",
     }
 
 
