@@ -262,3 +262,20 @@ async def test_set_input_type(monkeypatch: pytest.MonkeyPatch) -> None:
     assert response.json()["bus"] == "preview"
     assert response.json()["type_id"] == 8
     mock_send.assert_called_once_with("Y 0 43 8")
+
+
+@pytest.mark.anyio
+async def test_set_output_resolution(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Validate setting the output scaling resolution via POST /api/v1/resolution/output."""
+    mock_send = AsyncMock()
+    monkeypatch.setattr(scaler_conn, "send_command", mock_send)
+
+    payload = {
+        "bus": "preview",
+        "resolution_id": 16,
+    }
+    response = client.post("/api/v1/resolution/output", json=payload)
+    assert response.status_code == 200
+    assert response.json()["bus"] == "preview"
+    assert response.json()["resolution_id"] == 16
+    mock_send.assert_called_once_with("Y 0 78 16")

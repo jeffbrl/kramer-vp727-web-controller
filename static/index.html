@@ -1041,6 +1041,12 @@
         if (data.state.preview_input_type !== undefined && data.state.preview_input_type !== null) {
           elPreviewTypeSelect.value = data.state.preview_input_type;
         }
+        if (data.state.program_resolution !== undefined && data.state.program_resolution !== null) {
+          elProgramResSelect.value = data.state.program_resolution;
+        }
+        if (data.state.preview_resolution !== undefined && data.state.preview_resolution !== null) {
+          elPreviewResSelect.value = data.state.preview_resolution;
+        }
       }
 
       // Re-initialize Lucide icons in case new buttons got rendered

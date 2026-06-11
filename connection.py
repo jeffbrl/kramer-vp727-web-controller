@@ -30,6 +30,8 @@ class ScalerConnection:
         self.preview_source: Optional[int] = None
         self.program_input_type: Optional[int] = None
         self.preview_input_type: Optional[int] = None
+        self.program_resolution: Optional[int] = None
+        self.preview_resolution: Optional[int] = None
         self.panel_locked: bool = True  # Default to True as per example status response
 
         self._stream: Optional[anyio.abc.ByteStream] = None
@@ -152,6 +154,10 @@ class ScalerConnection:
             await self.send_command("Y 1 43")
             await anyio.sleep(0.1)
             await self.send_command("Y 1 95")
+            await anyio.sleep(0.1)
+            await self.send_command("Y 1 130")
+            await anyio.sleep(0.1)
+            await self.send_command("Y 1 78")
         except Exception as e:
             logger.error("Startup query failed: %s", e)
 
@@ -266,6 +272,26 @@ class ScalerConnection:
             except ValueError:
                 pass
 
+        elif cmd == "130" and len(parts) >= 4:
+            # Program output resolution response: Z 0 130 <res_id>
+            try:
+                val = int(parts[3])
+                if self.program_resolution != val:
+                    self.program_resolution = val
+                    state_changed = True
+            except ValueError:
+                pass
+
+        elif cmd == "78" and len(parts) >= 4:
+            # Preview output resolution response: Z 0 78 <res_id>
+            try:
+                val = int(parts[3])
+                if self.preview_resolution != val:
+                    self.preview_resolution = val
+                    state_changed = True
+            except ValueError:
+                pass
+
         elif cmd == "16" and len(parts) >= 5:
             # Take command execution acknowledgment: Z 0 16 3 1
             # A TAKE swaps the staged preview onto program.
@@ -286,12 +312,22 @@ class ScalerConnection:
                 )
                 state_changed = True
 
+            # Also swap local resolutions if known
+            if self.program_resolution is not None and self.preview_resolution is not None:
+                self.program_resolution, self.preview_resolution = (
+                    self.preview_resolution,
+                    self.program_resolution,
+                )
+                state_changed = True
+
             # Fire off a query to verify program source
             if self._tg is not None:
                 self._tg.start_soon(self.send_command, "Y 1 94")
                 self._tg.start_soon(self.send_command, "Y 1 42")
                 self._tg.start_soon(self.send_command, "Y 1 43")
                 self._tg.start_soon(self.send_command, "Y 1 95")
+                self._tg.start_soon(self.send_command, "Y 1 130")
+                self._tg.start_soon(self.send_command, "Y 1 78")
 
         elif cmd == "161":
             # Custom resolution timings written: Z 0 161 1

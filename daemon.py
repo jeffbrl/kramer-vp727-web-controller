@@ -80,6 +80,8 @@ class WebSocketManager:
                 "panel_locked": scaler_conn.panel_locked,
                 "program_input_type": scaler_conn.program_input_type,
                 "preview_input_type": scaler_conn.preview_input_type,
+                "program_resolution": scaler_conn.program_resolution,
+                "preview_resolution": scaler_conn.preview_resolution,
             },
             "config": {
                 "matrix": {
