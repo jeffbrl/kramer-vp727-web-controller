@@ -1,8 +1,11 @@
 # Kramer VP-727 Web Controller
 
-A lightweight, modern web bridge and user interface for controlling the **Kramer VP-727 In-Rator™** presentation switcher over a local network.
+A lightweight, modern web bridge and user interface for controlling the **Kramer VP-727 In-Rator™** presentation switcher over a network connection.
 
 This application translates RESTful HTTP API calls and WebSocket events into raw legacy **Kramer Protocol 2000** command streams, allowing real-time, interactive management of input routing, transitions, output resolutions, custom display timings, and OSD configuration via a glassmorphic dark-mode web application.
+
+> [!WARNING]
+> **Lack of Authentication**: This application does not implement any form of authentication, authorization, or access control. Anyone with network access to this service can execute route switches, perform transitions, modify custom timings, toggle the OSD, or rewrite the non-volatile EEPROM memory. Restrict network access to trusted users/devices, or place this service behind a reverse proxy (e.g., NGINX or Caddy) with enabled authentication headers.
 
 ---
 
@@ -57,9 +60,9 @@ The system operates as an asynchronous protocol bridge running in Python using F
 
 ### Installation & Run
 
-1. Clone this repository to your local workspace:
+1. Clone this repository to your workspace:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/jeffbrl/kramer-vp727-web-controller.git
    cd kramer-727
    ```
 
