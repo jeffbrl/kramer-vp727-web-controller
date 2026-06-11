@@ -223,9 +223,15 @@ async def test_api_save_inputs_config(
 
     # Send update request
     payload = {
-        str(i): {"label": f"Cam {i}", "icon": "desktop"} for i in range(1, 9)
+        "hardware": {
+            "scaler_ip": "127.0.0.1",
+            "scaler_port": 5000,
+        },
+        "inputs": {
+            i: {"label": f"Cam {i}", "icon": "desktop"} for i in range(1, 9)
+        }
     }
-    response = client.post("/api/v1/config/inputs", json=payload)
+    response = client.post("/api/v1/config", json=payload)
     assert response.status_code == 200
     assert response.json()["status"] == "success"
 

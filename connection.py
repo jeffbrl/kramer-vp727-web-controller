@@ -36,6 +36,7 @@ class ScalerConnection:
         self._write_lock = anyio.Lock()
         self._subscribers: List[Callable[[], Awaitable[None]]] = []
         self._tg: Optional[anyio.abc.TaskGroup] = None
+        self._reconnect_event = anyio.Event()
 
     def subscribe(self, callback: Callable[[], Awaitable[None]]) -> None:
         """Register a callback to be invoked when application state changes.
@@ -82,6 +83,7 @@ class ScalerConnection:
         max_backoff = 60.0
 
         while True:
+            self._reconnect_event = anyio.Event()
             self._set_status("connecting")
             try:
                 logger.info(
@@ -109,9 +111,9 @@ class ScalerConnection:
 
             except (
                 anyio.EndOfStream,
+                anyio.BrokenResourceError,
                 OSError,
                 TimeoutError,
-                anyio.ExecutionError,
             ) as e:
                 logger.warning("Connection issue: %s. Reconnecting...", e)
             except Exception as e:
@@ -129,8 +131,12 @@ class ScalerConnection:
 
             # Exponential backoff sleep
             logger.info("Waiting %.2f seconds before retry...", backoff)
-            await anyio.sleep(backoff)
-            backoff = min(backoff * 2.0, max_backoff)
+            with anyio.move_on_after(backoff):
+                await self._reconnect_event.wait()
+            if self._reconnect_event.is_set():
+                backoff = 1.0
+            else:
+                backoff = min(backoff * 2.0, max_backoff)
 
     async def _startup_query(self) -> None:
         """Send initialization queries to sync state with the physical unit."""
@@ -295,3 +301,28 @@ class ScalerConnection:
 
         if state_changed:
             await self._notify_subscribers()
+
+    async def update_scaler_settings(self, ip: str, port: int) -> None:
+        """Update scaler connection settings and force reconnect if changed."""
+        changed = (self.config.hardware.scaler_ip != ip) or (self.config.hardware.scaler_port != port)
+        if changed:
+            logger.info(
+                "Updating scaler settings to %s:%d (was %s:%d)",
+                ip,
+                port,
+                self.config.hardware.scaler_ip,
+                self.config.hardware.scaler_port,
+            )
+            self.config.hardware.scaler_ip = ip
+            self.config.hardware.scaler_port = port
+
+            # Force close the stream if connected to trigger immediate reconnection
+            if self._stream is not None:
+                logger.info("Closing active stream to trigger reconnect to new IP...")
+                try:
+                    await self._stream.aclose()
+                except Exception as e:
+                    logger.debug("Error closing stream during settings update: %s", e)
+
+            # Set the event to wake up the retry sleep if currently backing off
+            self._reconnect_event.set()
