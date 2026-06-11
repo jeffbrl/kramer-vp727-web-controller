@@ -638,7 +638,7 @@
         <!-- Navigation Tab Pills -->
         <nav class="nav-pills" style="margin-left: 2.5rem;">
           <button id="nav-dashboard" class="nav-pill active">Dashboard</button>
-          <button id="nav-settings" class="nav-pill">Configure Inputs</button>
+          <button id="nav-settings" class="nav-pill">Configuration</button>
         </nav>
       </div>
       <div class="header-right">
@@ -692,7 +692,7 @@
     <!-- Right Panel: Take Transition and Custom Resolutions -->
     <section class="sidebar">
       <!-- TAKE Transition Panel -->
-      <div class="card take-container">
+      <div class="card take-container" style="display: none;">
         <button class="take-btn" id="take-transition-btn" style="margin-bottom: 0.75rem;">
           <i data-lucide="zap" class="take-icon"></i>
           TAKE
@@ -850,30 +850,56 @@
     </section>
   </main>
  
-  <!-- Settings Content (Configure Inputs) -->
+  <!-- Settings Content (Configuration) -->
   <main id="settings-view" style="display: none; max-width: 900px; margin: 2rem auto; padding: 0 2rem; width: 100%;">
     <div class="card" style="width: 100%;">
-      <!-- Overlay shown when not connected to back-end -->
-      <div class="offline-overlay" id="settings-offline-overlay"></div>
-      
       <div class="card-title">
-        <i data-lucide="edit-3"></i> Configure Input Labels and Icons
+        <i data-lucide="settings"></i> Configuration
       </div>
- 
+
       <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">
-        Modify the friendly display labels and icons for each of the 8 physical matrix inputs. These settings will be saved to config.yaml on the server.
+        Configure the Kramer VP-727 Scaler network settings and friendly input channel mappings. These configurations are persisted on the server.
       </p>
- 
-      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;" id="settings-inputs-list">
-        <!-- Will be dynamically populated with 8 input configuration rows by JS -->
+
+      <!-- Scaler Connection Card/Section -->
+      <div style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+        <h3 style="font-size: 0.95rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="network" style="width: 18px; height: 18px; color: #38bdf8;"></i> Scaler Network Settings
+        </h3>
+        <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 1.25rem;">
+          Specify the IP address and TCP control port of the physical hardware scaler.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 200px;">
+            <label style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.4rem;">SCALER IP ADDRESS</label>
+            <input type="text" id="setting-scaler-ip" class="resolution-profile-selector" style="margin-bottom: 0;" placeholder="e.g. 192.168.6.244" />
+          </div>
+          <div style="width: 140px;">
+            <label style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.4rem;">CONTROL PORT</label>
+            <input type="number" id="setting-scaler-port" class="resolution-profile-selector" style="margin-bottom: 0;" placeholder="5000" />
+          </div>
+        </div>
       </div>
- 
+
+      <!-- Matrix Inputs Labels Card/Section -->
+      <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 0.95rem; font-weight: 600; color: #f1f5f9; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="edit-3" style="width: 18px; height: 18px; color: #fbbf24;"></i> Matrix Input Customization
+        </h3>
+        <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 1.25rem;">
+          Modify display labels and icons for each of the 8 physical matrix inputs.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;" id="settings-inputs-list">
+          <!-- Will be dynamically populated with 8 input configuration rows by JS -->
+        </div>
+      </div>
+
       <div style="display: flex; gap: 1rem; justify-content: flex-end;">
         <button class="resolution-btn" id="cancel-settings-btn" style="width: auto; padding: 0.6rem 1.5rem; background: transparent; border-color: rgba(255,255,255,0.06);">
           Cancel
         </button>
         <button class="take-btn" id="save-settings-btn" style="width: auto; padding: 0.6rem 1.5rem; font-size: 0.85rem; font-weight: 700; color: #0f172a; border-radius: 8px;">
-          Save Labels & Icons
+          Save Configuration
         </button>
       </div>
     </div>
@@ -922,7 +948,7 @@
     const viewSettings = document.getElementById("settings-view");
     const cancelSettingsBtn = document.getElementById("cancel-settings-btn");
     const saveSettingsBtn = document.getElementById("save-settings-btn");
-    const settingsOfflineOverlay = document.getElementById("settings-offline-overlay");
+    let hardwareData = null;
 
     // Icon helper maps icon name from config.yaml -> Lucide icon name
     function getLucideIconName(configIcon) {
@@ -993,6 +1019,10 @@
       const isConnected = data.status === "connected";
       toggleControlsDisabled(!isConnected);
 
+      if (data.hardware) {
+        hardwareData = data.hardware;
+      }
+
       // Save config and render dynamic grids if config returned
       if (data.config) {
         configData = data.config;
@@ -1041,7 +1071,6 @@
         elMatrixOverlay.classList.add("active");
         elResOverlay.classList.add("active");
         elOutputResOverlay.classList.add("active");
-        settingsOfflineOverlay.classList.add("active");
         elTakeBtn.classList.add("controls-disabled");
         elSyncResBtn.classList.add("controls-disabled");
         elOsdBtn.classList.add("controls-disabled");
@@ -1049,7 +1078,6 @@
         elMatrixOverlay.classList.remove("active");
         elResOverlay.classList.remove("active");
         elOutputResOverlay.classList.remove("active");
-        settingsOfflineOverlay.classList.remove("active");
         elTakeBtn.classList.remove("controls-disabled");
         elSyncResBtn.classList.remove("controls-disabled");
         elOsdBtn.classList.remove("controls-disabled");
@@ -1363,6 +1391,17 @@
     // Populate Settings form with current config
     function populateSettingsForm() {
       if (!configData) return;
+
+      // Populate Scaler Connection settings
+      const elScalerIp = document.getElementById("setting-scaler-ip");
+      const elScalerPort = document.getElementById("setting-scaler-port");
+      if (elScalerIp && hardwareData) {
+        elScalerIp.value = hardwareData.ip || "";
+      }
+      if (elScalerPort && hardwareData) {
+        elScalerPort.value = hardwareData.port || 5000;
+      }
+
       const container = document.getElementById("settings-inputs-list");
       container.innerHTML = "";
  
@@ -1405,23 +1444,45 @@
         .replace(/'/g, "&#039;");
     }
  
-    // Save Input Configurations back to config.yaml
+    // Save Configurations back to config.yaml
     saveSettingsBtn.onclick = () => {
-      const payload = {};
+      const inputsPayload = {};
       for (let i = 1; i <= 8; i++) {
         const labelVal = document.getElementById(`edit-label-${i}`).value.trim() || `Input ${i}`;
         const iconVal = document.getElementById(`edit-icon-${i}`).value;
-        payload[i] = {
+        inputsPayload[i] = {
           label: labelVal,
           icon: iconVal
         };
       }
- 
-      console.log("Saving new input configurations:", payload);
+
+      const scalerIpVal = document.getElementById("setting-scaler-ip").value.trim();
+      const scalerPortVal = document.getElementById("setting-scaler-port").value.trim();
+
+      if (!scalerIpVal) {
+        alert("Scaler IP Address is required.");
+        return;
+      }
+
+      const portInt = parseInt(scalerPortVal, 10);
+      if (isNaN(portInt) || portInt <= 0 || portInt > 65535) {
+        alert("Please enter a valid TCP port number (1-65535).");
+        return;
+      }
+
+      const payload = {
+        hardware: {
+          scaler_ip: scalerIpVal,
+          scaler_port: portInt
+        },
+        inputs: inputsPayload
+      };
+
+      console.log("Saving new configuration:", payload);
       saveSettingsBtn.disabled = true;
       saveSettingsBtn.innerText = "Saving...";
- 
-      fetch('/api/v1/config/inputs', {
+
+      fetch('/api/v1/config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -1433,14 +1494,14 @@
       .then(data => {
         console.log("Save configuration response:", data);
         saveSettingsBtn.disabled = false;
-        saveSettingsBtn.innerText = "Save Labels & Icons";
+        saveSettingsBtn.innerText = "Save Configuration";
         showView('dashboard');
       })
       .catch(err => {
         console.error("Save config request failed:", err);
-        alert("Failed to save input configuration settings.");
+        alert("Failed to save configuration settings.");
         saveSettingsBtn.disabled = false;
-        saveSettingsBtn.innerText = "Save Labels & Icons";
+        saveSettingsBtn.innerText = "Save Configuration";
       });
     };
  

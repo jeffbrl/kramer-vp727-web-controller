@@ -207,6 +207,20 @@ class InputTypeRequest(BaseModel):
     )
 
 
+class HardwareConfigSettings(BaseModel):
+    """API model for scaler hardware IP and port configuration settings."""
+
+    scaler_ip: str = Field(..., description="IP address of the physical scaler")
+    scaler_port: int = Field(5000, description="TCP port of the physical scaler")
+
+
+class SaveConfigRequest(BaseModel):
+    """API model for updating overall configuration."""
+
+    hardware: HardwareConfigSettings
+    inputs: dict[int, InputConfig]
+
+
 @app.get("/api/v1/status")
 async def get_status() -> dict:
     """Fetch connection status, cached firmware generation, and state configurations."""
@@ -331,10 +345,16 @@ async def set_input_type(payload: InputTypeRequest) -> dict:
     }
 
 
-@app.post("/api/v1/config/inputs")
-async def save_inputs_config(payload: dict[int, InputConfig]) -> dict:
-    """Save the customized input labels and icons back to config.yaml."""
-    config.matrix.inputs = payload
+@app.post("/api/v1/config")
+async def save_config(payload: SaveConfigRequest) -> dict:
+    """Save the customized connection settings and input labels/icons to config.yaml."""
+    config.matrix.inputs = payload.inputs
+
+    ip = payload.hardware.scaler_ip.strip()
+    port = payload.hardware.scaler_port
+
+    # Update the scaler connection settings and force reconnect if needed (this updates config in-place)
+    await scaler_conn.update_scaler_settings(ip, port)
 
     try:
         config_data = config.model_dump()
@@ -342,12 +362,13 @@ async def save_inputs_config(payload: dict[int, InputConfig]) -> dict:
             yaml.safe_dump(
                 config_data, f, default_flow_style=False, sort_keys=False
             )
-        logger.info("New input labels successfully written to %s", config_file)
+        logger.info("Configuration successfully written to %s", config_file)
     except Exception as e:
-        logger.exception("Failed to write to %s: %s", config_file, e)
+        logger.exception("Failed to write configuration to %s: %s", config_file, e)
         raise HTTPException(
             status_code=500, detail="Failed to write configuration file"
         )
+
 
     # Broadcast new state/config immediately to all WebSockets
     await ws_manager.broadcast_state()
