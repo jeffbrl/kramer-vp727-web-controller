@@ -49,3 +49,23 @@ custom_resolutions:
       vactive: 1050
       vsync: 6
       vstart: 30
+    WXGA_1280x800_60Hz:
+      label: 1280x800 @ 60Hz
+      htotal: 1680
+      hactive: 1280
+      hsync: 128
+      hstart: 200
+      vtotal: 831
+      vactive: 800
+      vsync: 6
+      vstart: 22
+    WXGA_1024x640_60Hz:
+      label: 1024x640 @ 60Hz
+      htotal: 1312
+      hactive: 1024
+      hsync: 96
+      hstart: 144
+      vtotal: 665
+      vactive: 640
+      vsync: 6
+      vstart: 16

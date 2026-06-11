@@ -245,7 +245,26 @@ Toggles the On-Screen Display (OSD) menu visibility.
   }
   ```
 
-### 7. `POST /api/v1/config/inputs`
+### 7. `POST /api/v1/input/type`
+Sets the input signal type (e.g. RGBHV, Composite, S-Video) for the currently routed channel on the Program or Preview bus.
+* **Request Payload:**
+  ```json
+  {
+    "bus": "preview",
+    "type_id": 8
+  }
+  ```
+* **Success Response (200 OK):**
+  ```json
+  {
+    "command_sent": "Y 0 43 8",
+    "bus": "preview",
+    "type_id": 8,
+    "status": "success"
+  }
+  ```
+
+### 8. `POST /api/v1/config/inputs`
 Saves custom input label descriptors and icons to the backend `config.yaml` file.
 * **Request Payload:**
   ```json
@@ -262,7 +281,7 @@ Saves custom input label descriptors and icons to the backend `config.yaml` file
   }
   ```
 
-### 8. `WEBSOCKET /api/v1/ws`
+### 9. `WEBSOCKET /api/v1/ws`
 Accepts WebSocket connections. Broadcasts the status payload to all connected clients whenever the hardware status, routing, or active configuration changes.
 
 ---

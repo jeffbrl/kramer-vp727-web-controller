@@ -1,0 +1,4290 @@
+Kramer Electronics, Ltd.
+
+USER MANUAL
+Model:
+VP-727
+Universal Presentation Matrix Switcher / Scaler
+
+Contents
+
+Contents
+1
+1.1
+2
+2.1
+3
+4
+5
+6
+7
+7.1
+7.2
+7.3
+7.4
+8
+8.1
+8.2
+8.3
+8.4
+
+Introduction
+About the VP-727
+Getting Started
+Quick Start
+Overview
+Your VP-727 Universal Presentation Matrix Switcher / Scaler
+Installing on a Rack
+Connecting the VP-727
+Connecting the VP-727 Control Ports
+Connecting a PC (via RS-232)
+Connecting via RS-485
+Connecting the VP-727 via the ETHERNET port
+Connecting the VP-727 via the CONTROL Connector
+Understanding the VP-727
+Understanding the UNIVERSAL Inputs
+Understanding the PREVIEW/PROGRAM Outputs
+Switching/Scaling of an Input
+Understanding the PIP Button Feature
+
+1
+1
+1
+2
+3
+5
+10
+11
+14
+14
+15
+15
+16
+17
+17
+17
+19
+19
+
+8.4.1
+8.4.2
+8.4.3
+
+Selecting the PIP Source
+Activating the PIP
+PIP Characteristics
+
+19
+19
+20
+
+8.5
+8.6
+
+Locking and Unlocking the Front Panel
+Using Text Overlay
+
+20
+21
+
+8.6.1
+8.6.2
+8.6.3
+8.6.4
+
+Downloading the TextOverlay Program
+Setting the Text Message
+Connecting and Disconnecting the TextOverlay Program
+Saving and Loading Settings
+
+23
+23
+24
+25
+
+9
+9.1
+
+Operating the VP-727
+Operating via the OSD MENU Screen
+
+26
+26
+
+9.1.1 Preview and Program Setting Commands
+9.1.1.1 Preview / Program Setting Output Test Pattern Screens
+9.1.1.2 Preview / Program User Mode Output Setting
+9.1.2 Transition Commands
+9.1.3 Utility Commands
+9.1.3.1 TCP/IP Setting Commands
+9.1.3.2 Misc Setting Commands
+9.1.3.2.1 Logo
+9.1.3.2.2 Save Lock
+9.1.3.2.3 Input Lock
+9.1.3.3 Save/Recall/Erase Setting Commands
+9.1.4 Information Screen
+
+26
+28
+29
+30
+31
+31
+32
+32
+32
+32
+33
+33
+i
+
+Contents
+
+9.2
+9.3
+9.4
+
+Operating via the Front Panel LCD Display
+Operating via the Infra-red Remote Control Transmitter
+Operating via ETHERNET
+
+33
+34
+35
+
+9.4.1 Installing and Running the Configuration Software
+9.4.2 Configuring the Ethernet Connection
+9.4.2.1 The Configuration Screen
+9.4.3 Control the VP-727 via the Ethernet/Serial Port
+
+35
+35
+35
+37
+
+9.5
+9.6
+10
+11
+12
+
+38
+38
+39
+40
+47
+
+Operating via the CONTROL Connector
+Operating via RS-232
+Technical Specifications
+VP-727 Communication Protocol
+VP-727 Text Overlay Protocol
+
+Figures
+Figure 1: VP-727 Universal Presentation Matrix Switcher / Scaler Front Panel
+Figure 2: VP-727 Universal Presentation Matrix Switcher / Scaler Rear Panel
+Figure 3: Connecting the VP-727
+Figure 4: Connecting the INPUTS (an example)
+Figure 5: Connecting the PREVIEW OUT / PROGRAM OUT Connectors
+Figure 6: Connecting the PC
+Figure 7: RJ-45 PINOUT
+Figure 8: Example showing the use of the PREVIEW and PROGRAM Output
+Figure 9: TextOverlay Application Screen
+Figure 10: Menu Screen Icons
+Figure 11: Preview and Program Setting OSD Menus
+Figure 12: Test Pattern Screens
+Figure 13: User Mode Setting
+Figure 14: Transition OSD
+Figure 15: Utility OSD
+Figure 16: TCP/IP Setting OSD
+Figure 17: Misc Setting OSD
+Figure 18: Example of how to use the LCD Display
+Figure 19: Remote Transmitter
+Figure 20: VP727 Ethernet Application Main Dialog Box (Configuration Tab)
+Figure 21: VP727 Control Application Search Panel Screen
+Figure 22: Configuration Tab
+Figure 23: Setting an IP Number
+Figure 24: VP722 Control Application Main Dialog Box (Control Tab)
+
+ii
+
+6
+8
+11
+12
+13
+14
+15
+18
+21
+26
+26
+28
+29
+30
+31
+31
+32
+33
+34
+35
+36
+36
+37
+38
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Contents
+
+Tables
+Table 1: Front Panel VP-727 Universal Presentation Matrix Switcher / Scaler Features
+Table 2: Rear Panel VP-727 Universal Presentation Matrix Switcher / Scaler Features
+Table 3: Crossover Cable RJ-45 Types
+Table 4: Crossover Cable RJ-45 PINOUT
+Table 5: Straight-through Cable RJ-45 PINOUT
+Table 6: Features and Functions of the TextOverlay Application
+Table 7: Number of Buffers, Output Resolution and Maximum Display Height
+Table 8: TextOverlay Parameters
+Table 9: Preview and Program Setting OSD Menus
+Table 10: User Mode Setting Definitions
+Table 11: Transition Effect Option Commands
+Table 12: Utility OSD Setting
+Table 13: TCP/IP Setting OSD
+Table 14: Remote Transmitter Functions
+Table 15: VP727 Ethernet Application Configuration Tab
+Table 16: Technical Specifications of the VP-727
+Table 17: Set Commands
+Table 18: Text Overlay Protocol of the VP-727
+
+7
+9
+15
+15
+16
+22
+23
+24
+27
+29
+30
+31
+31
+34
+36
+39
+41
+47
+
+iii
+
+ADDENDUM: Ethernet Cross Cable Wiring Connection
+
+This addendum describes the correct wiring for crossover cable connections
+and replaces the opening paragraph in the "Connecting the ETHERNET Port
+directly to a PC (Crossover Cable)" section in the User Manual as follows:
+Connecting the ETHERNET Port directly to a PC (Crossover Cable)
+You can connect the Ethernet port of the machine to the Ethernet port on your
+PC, via a crossover cable with RJ-45 connectors.
+Table 1 and Figure 1 define the color codes for the two existing standard types
+of cross cables used in the industry. Table 2 defines how to connect the wires
+to the connectors on both ends of the cable.
+When manually connecting the ends of a cable, both connectors must follow
+the same standard (either EIA /TIA 568A or EIA /TIA 568B).
+Table 1: Crossover Cable RJ-45 Types
+EIA /TIA 568B
+
+1
+
+8
+
+1
+
+8
+
+EIA /TIA 568A
+
+PIN
+
+Wire Color
+
+PIN
+
+Wire Color
+
+1
+
+White-orange
+
+1
+
+White-green
+
+2
+
+Orange
+
+2
+
+Green
+
+3
+
+White-green
+
+3
+
+White-orange
+
+4
+
+Blue
+
+4
+
+Blue
+
+5
+
+White-blue
+
+5
+
+White-blue
+
+6
+
+Green
+
+6
+
+Orange
+
+7
+
+White-brown
+
+7
+
+White-brown
+
+8
+
+Brown
+
+8
+
+Brown
+
+TOP
+
+FRONT
+
+Figure 1: RJ-45 PINOUT
+Table 2: Wiring between Connector One and Two of the Cable
+Signal Pairs
+
+PINs on
+Connector One
+
+PINs on Connector
+Two
+
+Signal Pairs
+
+TX_D1+
+
+1
+
+3
+
+RX_D2+
+
+TX_D1-
+
+2
+
+6
+
+RX_D2-
+
+RX_D2+
+
+3
+
+1
+
+TX_D1+
+
+RX_D2-
+
+6
+
+2
+
+TX_D1-
+
+BI_D3+
+
+4
+
+7
+
+BI_D4+
+
+BI_D3-
+
+5
+
+8
+
+BI_D4-
+
+BI_D4+
+
+7
+
+4
+
+BI_D3+
+
+BI_D4-
+
+8
+
+5
+
+BI_D3-
+
+P/N: 2900 - 9999993
+
+A1
+
+Introduction
+
+1
+
+Introduction
+Welcome to Kramer Electronics (since 1981): a world of unique, creative and
+affordable solutions to the infinite range of problems that confront the video,
+audio and presentation professional on a daily basis. In recent years, we have
+redesigned and upgraded most of our line, making the best even better! Our 500plus different models now appear in 8 Groups1, which are clearly defined by
+function. Congratulations on purchasing your Kramer VP-727!
+
+1.1 About the VP-727
+The VP-727 Universal Presentation Matrix Switcher / Scaler is a true multistandard video to graphics scaler and seamless switcher with 8 universal inputs
+comprised of 5 BNC connectors each of which can accommodate a composite
+video, s-Video (Y/C), component video (RGB/YUV), RGBS, or RGBHV
+signal. It has dual scalers, one for the preview and the other for the program
+output. Dual scalers are required to do "live" seamless transitions from one
+source to another. It is ideal for these typical applications:
+Presentation applications that require a preview option
+Projection systems in conference rooms, board rooms, auditoriums, hotels,
+and churches
+Presentations requiring seamless switching between inputs, using special
+effects, cuts and fades
+The package includes these items: VP-727 Universal Presentation Matrix
+Switcher / Scaler, power cord2, infra-red remote control transmitter (including
+the required battery), null-modem adapter, and this user manual3.
+
+2
+
+Getting Started
+We recommend that you:
+Unpack the equipment carefully and save the original box and packaging
+materials for possible future shipment
+Review the contents of this user manual
+Use Kramer high performance high resolution cables4
+
+1 GROUP 1: Distribution Amplifiers; GROUP 2: Video and Audio Switchers, Matrix Switchers and Controllers; GROUP 3:
+Video, Audio, VGA/XGA Processors; GROUP 4: Interfaces and Sync Processors; GROUP 5: Twisted Pair Interfaces;
+GROUP 6: Accessories and Rack Adapters; GROUP 7: Scan Converters and Scalers; and GROUP 8: Cables and Connectors
+2 We recommend that you use only the power cord that is supplied with the machine
+3 Download up-to-date Kramer user manuals from the Internet at this URL: http://www.kramerelectronics.com
+4 The complete list of Kramer cables is on our Web site at http://www.kramerelectronics.com
+
+1
+
+Getting Started
+
+2.1 Quick Start
+This quick start chart summarizes the basic steps when connecting a VP-727:
+
+2
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Overview
+
+3
+
+Overview
+The VP-727 Universal Presentation Matrix Switcher / Scaler is a true
+multi-standard video to graphics scaler and presentation switcher for a wide
+variety of presentation and multimedia applications. It consists of a very high
+quality scaler with many user-selectable pixel-rates including VGA (640x480),
+SVGA (800x600), 832x624, 852x480, XGA (1024x768), 1280x720,
+1280x768, SXGA (1280x1024), 1366x768, 1365x1024, 1400x1050, UXGA
+(1600x1200), and high definition television HDTV: 480p, 576p, 720p, 1080i,
+and 1080p, as well as a user definable output mode1.
+In particular, the VP-727:
+Features 8 sets of universal INPUT BNC connectors: R/PR, G/Y/CV, B/PB/C,
+HS/CS, and VS. Each set can be programmed to operate as: composite video,
+s-Video, component video2, RGB/YUV, RGBS, RGsB, or RGBHV
+Scales the selected sources to DVI, RGBHV and VGA simultaneously. It
+switches seamlessly between 2 live sources using the selected special
+effects, which include cuts, fades, and wipes3
+Has dual scalers—for “live” seamless transitions from one source to
+another—with two independent outputs: a PREVIEW OUT and a
+PROGRAM OUT (see section 8.2). The PREVIEW output—including an
+OSD menu for making adjustments—is for determining how the scaled
+output will look before displaying live during a presentation, as well as for
+setting the special effects that harmonize the transition when changing
+between sources. Both outputs have separate sets of connectors for DVI
+(DVI-D on a DVI-I connector), VGA (an HD15F connector), and RGBHV /
+YPbPr (BNC connectors)
+Features 8 PREVIEW input buttons for switching a selected input to the
+PREVIEW output and 8 PROGRAM input buttons for switching a selected
+input to the PROGRAM output
+Includes two transition modes (accessible via the OSD): the Swap mode and
+the Follow mode. When pressing the TAKE button in the Swap mode, the
+preview and program inputs switch positions; when pressing in the Follow
+mode, the program input follows the preview input
+Scales and zooms (to up to 400% of the original size)
+Offers high quality de-interlacing 3:2/2:2 pull down4
+
+1 Recommended for advanced users only – non-standard settings may not be recognized by the display device
+2 Sometimes called YUV, or Y, B-Y, R-Y, or Y, Pb, Pr. The component input type (HDTV or YCbCr) may be set as HD or SD
+3 The wipe can be from left to right, right to left, up or down, and the corner wipe can start from any corner. The speed of
+each transition can be adjusted
+4 Accommodates the frame-rate of a converted movie (24 frames per second) to video frequencies (25 frames per second
+(PAL); 30 frames per second (NTSC)
+
+3
+
+Overview
+
+Has a text overlay feature for easy insertion of subtitles, karaoke script, and
+text banners
+Has built-in Picture-In-Picture inserters for both the PREVIEW and the
+PROGRAM outputs, letting you insert a video source into a graphics
+background or vice versa. This PIP image may be positioned and sized
+anywhere on the screen, or displayed as two images side by side (Split
+Screen)
+Saves all settings in non-volatile memory in the unit
+Supports firmware upgrade via RS 232
+Features a sophisticated front panel lockout1
+Features a Take button for executing preview to program switching (with
+transition effects)
+Has ProcAmp2 controls for both outputs
+Has multi-standard video support: PAL, SECAM, and NTSC (3.58/4.43)
+Has a built-in Time Base Corrector that stabilizes video sources with
+unstable sync
+Features multiple color space, outputting RGB or YUV (selectable)
+Digitally reprocesses the signal to correct mastering errors, and regenerates
+the video at a chosen line and pixel rate format, providing, for example,
+native-resolution video for LCD, DLP and Plasma displays
+Facilitates scaling of graphics resolutions to other resolutions
+Incorporates a unique graphics-scaling engine with image enhancement
+algorithms, which are built into the firmware
+Is specifically designed to improve video quality by reducing chroma noise
+Comes in a rugged, professional 19" 3U rack-mountable metal enclosure
+Uses a universal 100-240VAC automatic power supply
+Control the VP-727 via the:
+Front panel user-friendly menu-driven OSD (see section 9.1)
+High contrast LCD Display (see section 9.2)
+IR remote control transmitter (see section 9.3)
+ETHERNET (see section 9.4)
+CONTROL panel (see section 9.5)
+RS-232 (see section 9.6)
+
+1 See sections 8.5 and 9.1.3.2
+2 Processing amplification enables adjustment of different video and audio signal parameters
+
+4
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Your VP-727 Universal Presentation Matrix Switcher / Scaler
+
+Achieving the best performance means:
+Connecting only good quality connection cables, thus avoiding interference,
+deterioration in signal quality due to poor matching, and elevated noise
+levels (often associated with low quality cables)
+Avoiding interference from neighboring electrical appliances, making sure
+not to block the ventilation holes, and positioning your VP-727 away from
+moisture, excessive sunlight and dust
+
+4
+
+Your VP-727 Universal Presentation Matrix Switcher /
+Scaler
+Figure 1 and Table 1 define the front panel of the VP-727:
+
+5
+
+Your VP-727 Universal Presentation Matrix Switcher / Scaler
+
+Figure 1: VP-727 Universal Presentation Matrix Switcher / Scaler Front Panel
+
+6
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Your VP-727 Universal Presentation Matrix Switcher / Scaler
+Table 1: Front Panel VP-727 Universal Presentation Matrix Switcher / Scaler Features
+Feature
+
+Function
+
+POWER Switch
+
+Illuminated switch for turning the unit ON or OFF
+
+2
+
+IR Receiver / LED
+
+Green when the unit will accept IR remote commands; red in standby mode
+
+3
+
+INPUTS
+
+Selects one of the R/PR, G/Y/CV, B/PB/C, HS/CS, VS sources (from 1 to 8)
+
+PIP
+
+Toggles the picture-in-picture function on and off
+
+BLANK
+FREEZE
+
+Toggles between a blank screen and the selected input
+Freezes the output video image (toggle)
+
+INPUTS
+
+Selects one of the sources: R/PR, G/Y/CV, B/PB/C, HS/CS, VS (from 1 to 8)
+
+FREEZE
+
+Freezes the output video image (toggle)
+
+5
+6
+7
+8
+9
+10
+
+PROGRAM
+Buttons
+
+4
+
+PREVIEW
+Buttons
+
+#
+1
+
+BLANK
+
+Toggles between a blank screen and the selected input
+
+PIP
+
+Toggles the picture-in-picture function on and off
+
+11 TAKE Button2
+3
+
+12 CUT Button
+3
+
+13 FADE Button
+
+16
+17
+18
+19
+
+TRANSITION Buttons 3,4
+
+14
+15
+
+1
+
+DIRECTION
+Buttons
+
+20 OSD Button
+21
+22
+23
+24
+25 ENTER Button
+
+Pressing TAKE causes the transition to occur
+Selects an instantaneous transition from the PREVIEW output to the PROGRAM
+output
+Selects a dissolved transition from the PREVIEW output to the PROGRAM output
+Selects a WIPE transition effect5
+7
+
+Selects a SQUARE transition effect
+
+Selects a CHESSBOARD transition effect7
+Selects a Diagonal transition effect6
+Selects a CIRCLE transition effect7
+Selects a CORNER transition effect6
+Activates/deactivates access to the OSD Menu
+Toggles within each level 2 command / increases the range by one step
+Moves up one step (in the same level) in the OSD menu
+Moves down one step (in the same level) in the OSD menu
+Toggles within each level 2 command / decreases the range by one step
+Moves to the next level in the OSD menu
+
+26 MENU Button
+Displays the OSD Menu screen (or moves to the previous level in the OSD menu)
+27 LCD STATUS Display Displays the status of the unit, and is used for menu navigation
+28 PANEL LOCK Button
+
+Locks/unlocks the front panel
+
+Figure 2 and Table 2 define the rear panel of the VP-727:
+1 After pressing the POWER key on the remote control transmitter (see Figure 19). The machine is in standby mode (power
+consumption is reduced) and the power switch (item 1) on the machine continues to illuminate
+2 The effect is only seen in PROGRAM Mode. The PREVIEW screen will blank during the transition
+3 Only for setting up the unit for the effect. The effect will only occur when the Take button is pressed
+4 Select a specific effect for the transition from the PREVIEW output to the PROGRAM output
+5 Choose the direction from where the effect starts: “left to right”, “right to left”, “up” or “down” (see section 9.1.2)
+6 Choose the direction from where the effect starts: “top left”, “bottom left”, “top right” or “bottom right” (see section 9.1.2)
+7 Choose the direction from where the effect starts: “in” or “out” (see section 9.1.2)
+
+7
+
+Your VP-727 Universal Presentation Matrix Switcher / Scaler
+
+Figure 2: VP-727 Universal Presentation Matrix Switcher / Scaler Rear Panel
+
+8
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Your VP-727 Universal Presentation Matrix Switcher / Scaler
+Table 2: Rear Panel VP-727 Universal Presentation Matrix Switcher / Scaler Features
+Feature
+
+Function
+
+PROGRAM
+OUT
+
+B/PB BNC Connector
+G/Y BNC Connector
+R/PR BNC Connector
+VS BNC Connector
+HS BNC Connector
+CONTROL MiniDin 6F Connector
+R/PR BNC Connector
+G/Y BNC Connector
+B/PB BNC Connector
+HS BNC Connector
+VS BNC Connector
+Power Connector with FUSE
+RS-232 DB 9 Connector
+RS-485 Port
+PREVIEW
+OUT
+
+#
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+
+Connects to the PROGRAM display device (component video1 or
+RGB or RGBHV acceptor)
+Reserved for future use
+
+Connects to the PREVIEW display device (component video1 or RGB
+or RGBHV acceptor)
+AC connector enabling power supply to the unit
+Connects to PC or Serial Controller
+Connects to the Kramer VP-727T Presentation Switcher Control
+2
+Panel (optional). Pin G is for the Ground connection ; pins B (-) and A
+(+) are for RS-485
+3
+Connects to your LAN
+Connects to the VGA (analog interface) graphics acceptor
+Connects to the DVI-D (digital video interface) graphics acceptor
+
+46
+
+VGA HD15
+Connector
+
+Connects to the VGA (analog interface) graphics acceptor
+
+DVI Connector
+
+Connects to the DVI-D (digital video interface) graphics acceptor
+
+47
+48
+49
+50
+51
+52
+
+INPUTS (from 1 to 8) PROGRAM PREVIEW
+OUT
+OUT
+
+43 ETHERNET port
+44
+VGA HD15
+Connector
+45
+DVI Connector
+
+R/PR BNC Connector
+Connects to the RGB, RGBHV, RGBS, or component video1 source
+G/Y/CV BNC Connector Connects to the RGB, RGBHV, RGBS, component video1, composite
+video, or s-Video4 source
+B/PB/C BNC Connector Connects to the RGB, RGBHV, RGBS, component video1 or s-Video4
+source
+HS/CS BNC Connector
+Connects to the RGBHV or RGBS source
+VS BNC Connector
+Connects to the RGBHV source
+
+1 Sometimes called YUV; Y, B-Y, R-Y; Y, Pb, Pr; or Y, Cb, Cr
+2 The ground connection is sometimes connected to the shield of the RS-485 cable. In most applications, the ground is not
+connected
+3 Local Area Network (that is, computers sharing a common communications line or wireless link, which often share a server
+within a defined geographic area)
+4 Made up of the Y on the G/Y/CV connector together with the C on the B/Pb/C connector
+
+9
+
+Installing on a Rack
+
+5
+
+Installing on a Rack
+This section describes what to do before installing on a rack and how to rack
+mount.
+Before Installing on a Rack
+
+Before installing on a rack, be sure that the environment is
+within the recommended range:
+
+How to Rack Mount
+To rack-mount a machine:
+1
+
+Attach both ear brackets to the
+machine. To do so, remove the
+screws from each side of the machine
+(3 on each side), and replace those
+screws through the ear brackets.
+
+2
+
+Place the ears of the machine
+against the rack rails, and insert the
+proper screws (not provided) through
+each of the four holes in the rack
+ears.
+
+Operating temperature range +5 to +45 Deg. Centigrade
+Operating humidity range
+
+5 to 65% RHL, non-condensing
+
+Storage temperature range
+
+-20 to +70 Deg. Centigrade
+
+Storage humidity range
+
+5 to 95% RHL, non-condensing
+
+CAUTION!!
+When installing on a 19" rack, avoid hazards by taking
+care that:
+1 It is located within the recommended environmental
+conditions, as the operating ambient temperature of a
+closed or multi unit rack assembly may exceed the
+room ambient temperature.
+2 Once rack mounted, enough air will still flow around the
+machine.
+3 The machine is placed straight in the correct horizontal
+position.
+4 You do not overload the circuit(s). When connecting
+the machine to the supply circuit, overloading the
+circuits might have a detrimental effect on overcurrent
+protection and supply wiring. Refer to the appropriate
+nameplate ratings for information. For example, for
+fuse replacement, see the value printed on the product
+label.
+5 The machine is earthed (grounded) in a reliable way
+and is connected only to an electricity socket with
+grounding. Pay particular attention to situations where
+electricity is supplied indirectly (when the power cord is
+not plugged directly into the socket in the wall), for
+example, when using an extension cable or a power
+strip, and that you use only the power cord that is
+supplied with the machine.
+
+10
+
+Note that:
+In some models, the front panel
+may feature built-in rack ears
+Detachable rack ears can be removed
+for desktop use
+Always mount the machine in the rack
+before you attach any cables or
+connect the machine to the power
+If you are using a Kramer rack adapter
+kit (for a machine that is not 19"), see
+the Rack Adapters user manual for
+installation instructions (you can
+download it at:
+http://www.kramerelectronics.com)
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Connecting the VP-727
+
+6
+
+Connecting the VP-727
+The VP-727 is a universal presentation matrix switcher / scaler, letting you
+choose what sources to connect to the inputs. For example, you can connect just
+3 sources: an RGBHV source, an HDTV source and an RGBS source (as the
+example in Figure 3 shows), or 8 sources: an RGBHV source, 2 RGB sources,
+a CV source, a Y/C source, a component video source, an HDTV source, and
+an RGBCs source (as the example in Figure 4 shows). Figure 3 shows an
+example of how to connect1 the rear panel of the VP-727:
+RGBHV
+(High Resolution)
+Computer
+Graphics Source
+
+HDTV Satellite
+Receiver Source
+
+Projector
+Analog
+Display
+
+RGBS
+(Separate
+Composite Sync)
+Computer
+Graphics Source
+Plasma
+Display
+
+RS-232
+
+Display
+
+Figure 3: Connecting the VP-727
+
+1 Figure 4 and Figure 5 show how to connect several sources, and the PREVIEW/PROGRAM OUT connectors, respectively
+
+11
+
+Connecting the VP-727
+1
+
+To connect the VP-727, do the following2:
+1. Connect the following video sources1 (see Figure 4):
+An RGBHV (high resolution) computer graphics source to the R/PR,
+G/Y/CV, B/PB/C, HS/CS and VS BNC INPUT 1 connectors
+An RGB camera to both the R/PR, G/Y/CV, and B/PB/C BNC
+INPUT 2 and INPUT 8 connectors
+A composite video player to the G/Y/CV BNC INPUT 3 connector
+An s-Video player to the G/Y/CV and B/PB/C BNC INPUT 4 connectors
+A component source—for example, a Betacam video player—to the
+R/PR, G/Y/CV, and B/PB/C BNC INPUT 5 connectors
+An HDTV satellite receiver source to the R/PR, G/Y/CV, and B/PB/C
+BNC INPUT 6 connectors
+An RGBS (separate composite sync) computer graphics source to the
+R/PR, G/Y/CV, B/PB/C, and HS/CS BNC INPUT 7 connectors
+
+Figure 4: Connecting the INPUTS (an example)
+1 As this particular example describes. As the VP-727 is universal, you can connect any type (format) of video to the inputs
+2 Switch OFF the power on each device before connecting it to your VP-727. After connecting your VP-727, switch on its
+power and then switch on the power on each device
+
+12
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Connecting the VP-727
+
+2. Connect the PROGRAM OUT (see Figure 5):
+DVI connector to the projector
+VGA HD15F connector to the analog display
+R/PR, G/Y, B/PB, HS and VS BNC OUTPUT connectors to the
+RGBHV acceptor, for example, a plasma display
+3. Connect the PREVIEW OUT (see Figure 5):
+DVI connector to the digital display
+VGA HD15F connector to the analog display
+R/PR, G/Y, B/PB, HS and VS BNC OUTPUT connectors to the
+display
+
+Figure 5: Connecting the PREVIEW OUT / PROGRAM OUT Connectors
+
+4. Connect the power cord1.
+5. Connect a PC via RS-232 (optional), see section 7.1.
+6. Connect the Kramer VP-727T Presentation Switcher Control Panel via
+the RS-485 port (optional), see section 7.2.
+7. Connect the ETHERNET port (optional), see section 7.3.
+
+1 We recommend that you use only the power cord that is supplied with this machine
+
+13
+
+Connecting the VP-727 Control Ports
+
+7
+
+Connecting the VP-727 Control Ports
+This section describes how to connect the VP-727 control ports, that is, the:
+RS-232 port, see section 7.1
+RS-485 port, see section 7.2
+ETHERNET port, see section 7.3
+CONTROL port, see section 7.4
+
+7.1 Connecting a PC (via RS-232)
+You can connect a PC (or other controller) to the VP-727 via the RS-232 port
+for remote control, and for upgrading the firmware.
+To connect a PC to a VP-727 unit, using the Null-modem adapter provided
+with the machine (recommended):
+Connect the RS-232 DB9 rear panel port on the VP-727 unit to the
+Null-modem adapter and connect the Null-modem adapter with a 9 wire flat
+cable to the RS-232 DB9 port on your PC
+To connect a PC to a VP-727 unit, without using a Null-modem adapter:
+Connect the RS-232 DB9 port on your PC to the RS-232 DB9 rear panel
+port on the VP-727 unit, forming a cross-connection1, as Figure 6 illustrates
+
+DB9 (FromPC)
+
+DB9 (To Presentation
+Switcher / Scaler)
+
+Figure 6: Connecting the PC
+
+1 Also known as a Null-modem connection
+
+14
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Connecting the VP-727 Control Ports
+
+7.2 Connecting via RS-485
+To connect the VP-727 to the Kramer VP-727T Presentation Switcher Control
+Panel via the RS-485 control port, do the following:
+Connect the “ A” (+) PIN on the RS-485 rear panel port to the A (+) PIN on
+the RS-485 rear panel port of the VP-727T unit
+Connect the “ B” (-) PIN on the RS-485 rear panel port to the B (-) PIN on
+the RS-485 rear panel port of the VP-727T unit
+If shielded twisted pair cable is used, the shield may be connected to the
+“ G” (Ground) PIN on one of the units
+7.3 Connecting the VP-727 via the ETHERNET port
+To connect the VP-727 via the ETHERNET port, do the following:
+Connect the ETHERNET port of the VP-727 to the LAN port of your PC,
+via a crossover cable with RJ-45 connectors. Table 3 and Figure 7 define
+the two types of cross cables and Table 4 defines the PINOUT
+Table 3: Crossover Cable RJ-45 Types
+EIA /TIA 568B
+
+1
+
+8
+
+1
+
+8
+
+EIA /TIA 568A
+
+PIN
+
+Wire Color
+
+PIN
+
+Wire Color
+
+1
+
+White-orange
+
+1
+
+White-green
+
+2
+
+Orange
+
+2
+
+Green
+
+3
+
+White-green
+
+3
+
+White-orange
+
+4
+
+Blue
+
+4
+
+Blue
+
+5
+
+White-blue
+
+5
+
+White-blue
+
+6
+
+Green
+
+6
+
+Orange
+
+7
+
+White-brown
+
+7
+
+White-brown
+
+8
+
+Brown
+
+8
+
+Brown
+
+TOP
+
+FRONT
+
+Figure 7: RJ-45 PINOUT
+Table 4: Crossover Cable RJ-45 PINOUT
+Name
+
+Pin
+
+Pin
+
+Name
+
+TX_D1+
+
+1
+
+3
+
+RX_D2+
+
+TX_D1-
+
+2
+
+6
+
+RX_D2-
+
+RX_D2+
+
+3
+
+1
+
+TX_D1+
+
+RX_D2BI_D3+
+
+6
+4
+
+2
+7
+
+TX_D1BI_D4+
+
+BI_D3-
+
+5
+
+8
+
+BI_D4-
+
+BI_D4+
+
+7
+
+4
+
+BI_D3+
+
+BI_D4-
+
+8
+
+5
+
+BI_D3-
+
+15
+
+Connecting the VP-727 Control Ports
+
+If connecting the ETHERNET port of the VP-727 to the LAN port on a
+network hub or network router, use a straight-through cable with RJ-45
+connectors, as Table 5 defines
+Table 5: Straight-through Cable RJ-45 PINOUT
+EIA /TIA 568A
+Side 2
+PIN
+1
+2
+3
+4
+5
+6
+7
+8
+
+Wire Color
+Orange / White
+Orange
+Green / White
+Blue
+Blue / White
+Green
+Brown / White
+Brown
+
+EIA /TIA 568B
+Side 1
+PIN
+1
+2
+3
+4
+5
+6
+7
+8
+
+Wire Color
+Orange / White
+Orange
+Green / White
+Blue
+Blue / White
+Green
+Brown / White
+Brown
+
+7.4 Connecting the VP-727 via the CONTROL Connector
+The CONTROL MiniDin 6F is reserved for future use.
+
+16
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Understanding the VP-727
+
+8
+
+Understanding the VP-727
+This section describes the:
+UNIVERSAL inputs, see section 8.1
+PREVIEW/PROGRAM outputs, see section 8.2
+Switching/Scaling of an input, see section 8.3
+PIP feature, see section 8.4
+Panel Lock, see section 8.5
+
+8.1 Understanding the UNIVERSAL Inputs
+The VP-727 has 8 sets of inputs1. Each set can be programmed to operate as
+composite video, s-Video, component video, RGB/YUV, RGBS, RGsB, or
+RGBHV.
+The VP-727 is a universal presentation matrix switcher / scaler: you choose
+what type of source to connect to each input. You can connect different video
+types or the same or similar video types. See the examples in Figure 3 and
+Figure 4 in section 6.
+8.2 Understanding the PREVIEW/PROGRAM Outputs
+The VP-727 has 2 outputs: a PREVIEW output, and a PROGRAM output.
+Each of these outputs functions independently and has DVI connectors and
+VGA connectors, as well as sets of 5 BNC connectors2: R/PR, G/Y, B/PB, HS,
+and VS. Using the PREVIEW output, you can:
+See how the scaled output will look before displaying live during a presentation.
+As the example in Figure 8 illustrates, after seeing how the RGB source looks
+when scaled to DVI, it can be interchanged with the YUV source, seamlessly,
+using an elaborate (in this case chessboard) transition effect
+Harmonize transition to the PROGRAM output after determining the look
+and feel when in the PREVIEW output
+Use the OSD menu to make adjustments and choose the settings
+Set the transition, choosing one of any eight special effects
+Using the PROGRAM output, after pressing the TAKE button, you can see the
+transition3.
+1 Each set consists of 5 BNC connectors: R/Pr, G/Y/CV, B/Pb/C, Hs/Cs, and Vs
+2 Used to output one of the following: RGB, RGBHV, or component video
+3 After making some changes in the unit (for example, selecting a new input to the PREVIEW output), the TAKE button will
+be turned off (not illuminated) momentarily (until the unit successfully locks to this input). The TAKE button should not be
+pressed until it lights up again, otherwise there will be a period of black during the transition
+
+17
+
+Understanding the VP-727
+
+1. In this example an RGBS source is connected to input 2, and an HD
+
+Component source is connected to input 3. Set the OSD Settings as follows:
+
+The PROGRAM INPUT button 3 and
+the PREVIEW INPUT button 2
+illuminate:
+
+2. During the presentation, the
+
+HD Component source is
+outputted via the DVI PROGRAM
+OUT connector. Before changing
+to the RGBS source, the
+demonstrator previews how that
+source currently looks on his local
+display:
+
+3. Pressing the Chessboard
+
+button and then the TAKE
+button causes the transition to
+occur. The PROGRAM INPUT
+button 2 illuminates to
+correspond with the PREVIEW
+INPUT button 2. The RGBS
+source is displayed on both the
+PREVIEW and PROGRAM
+screens:
+
+Figure 8: Example showing the use of the PREVIEW and PROGRAM Output
+
+The transition can occur in one of two modes1:
+The Follow mode (shown in Figure 8) in which the PROGRAM input
+button is switched to the same position as the PREVIEW input button after
+the TAKE button is pressed
+The Swap mode, in which the PREVIEW input buttons and the PROGRAM
+input buttons switch places after pressing the TAKE button. For example, in
+Figure 8 the PROGRAM input button 3 would switch to 2 and the
+PREVIEW input button 2 would switch to 3, so the RGB source is
+displayed on the PROGRAM screen and the HD Component source is
+displayed on the PREVIEW screen.
+1 As selected via the Transition OSD Menu, see section 9.1.2
+
+18
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Understanding the VP-727
+
+8.3 Switching/Scaling of an Input
+The VP-727 scales the selected sources1 to DVI, RGBHV or YUV and VGA
+simultaneously. It switches seamlessly between sources using the selected
+special effects, which include cuts, fades, and wipes. Select the appropriate
+source (from channel 1 to 8) via the Input command in both the Preview Setting
+OSD screen and/or the Program Setting OSD screen (see section 9.1.1), via the
+IR or front panel pushbuttons, or via the serial or Ethernet control.
+8.4 Understanding the PIP Button Feature
+The Picture-in-Picture inserter (PIP) is used for the simultaneous display of
+video and graphic sources, and lets you display an inserted video PIP source
+over a graphic source2, or an inserted graphic PIP source over a video source3.
+8.4.1
+
+Selecting the PIP Source
+
+Select the PIP source (from channel 1 to 8), via the PIP source command in
+both the Preview Setting OSD screen and/or the Program Setting OSD screen.
+8.4.2
+
+Activating the PIP
+
+To activate the PIP (which illuminates the PIP button), do one of the following:
+Press the PIP button
+Switch on the PIP functionality via the OSD Menu
+Press the PIP key on the remote control transmitter (see Figure 19)
+Select PIP via the serial or the Ethernet port
+
+1 Composite video, s-Video, component video (sometimes called YUV or Y, B-Y, R-Y or Y, Pb, Pr ), RGB/YUV, RGBS,
+RGsB, or RGBHV
+2 For example, a composite video, s-Video, or component (video) video PIP source inserted over a component (graphics),
+RGB/YUV, RGBS, RGsB, or RGBHV graphic source
+3 For example, a component (graphics), RGB/YUV, RGBS, RGsB, or RGBHV graphic PIP source inserted over a composite
+video, s-Video, or component (video) video source
+
+19
+
+Understanding the VP-727
+8.4.3
+
+PIP Characteristics
+
+You can determine the following PIP characteristics:
+PIP Source
+PIP Size (1/25, 1/16, 1/9, 1/4, split screen, or custom1). Via the Preview
+Setting PIP OSD menu, you can resize the PIP
+Horizontal and Vertical position, placing it anywhere on the screen. To move
+the location of the PIP, reset the PIP position in the Preview Setting PIP OSD
+menu
+You set the custom PIP size via the H-Size and V-Size settings in the
+Preview Setting PIP OSD menu
+8.5 Locking and Unlocking the Front Panel
+To prevent changing the settings accidentally or tampering with the unit via the
+front panel buttons, lock your VP-727. Unlocking releases the protection
+mechanism. When the front panel is locked, control is still available via
+RS-232, the ETHERNET, and/or the CONTROL connector.
+To lock the VP-727:
+Press and hold for a few seconds the PANEL LOCK button2 on the front
+panel
+The front panel is locked and the PANEL LOCK button is illuminated.
+Pressing a button will have no effect
+To unlock the VP-727:
+Press and hold for a few seconds the illuminated PANEL LOCK button2 on
+the front panel
+The front panel unlocks and the PANEL LOCK button is no longer
+illuminated
+For a description of the Save Lock and Input Lock OSD functions, see section
+9.1.3.2.
+
+1 You set the custom PIP size via the H-Size and V-Size settings in the Preview Setting PIP OSD menu
+2 Or the Lock key on the infra-red remote control transmitter (see Figure 19)
+
+20
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Understanding the VP-727
+
+8.6 Using Text Overlay
+The text overlay feature is accessed via the Application Program (AP)1.
+Running this AP with the PC connected to the VP-727 lets you display text
+over the screen, with a rich feature set including text color and speed,
+transparency, text position and repetition. Current text overlay settings can be
+saved and loaded to the AP.
+Before running this program, you have to close the Ethernet Application
+program.
+Figure 9 and Table 6 define the TextOverlay Application Screen:
+
+Figure 9: TextOverlay Application Screen
+
+1 You can download it from our Web site: http://www.kramerelectronics.com
+
+21
+
+Understanding the VP-727
+Table 6: Features and Functions of the TextOverlay Application
+Feature
+
+Partial Transparency
+Normal Color
+Effect
+
+Scrolling
+Mode
+
+Text
+Color
+4
+
+Effect
+
+1
+
+2
+
+3
+
+Function
+1
+
+Background
+Color
+
+#
+1
+
+Partial Transparency
+Normal Color
+Blank Time
+Speed
+Mode
+
+Number of Accessible Buffers
+Display Height
+
+6
+7
+
+Text Position – V-Position
+Connect/Disconnect
+TCP/IP Check box
+Communication
+Interface
+
+5
+
+Send Text
+
+8
+
+RS-232 Check box
+VP725 Check box
+VP727 Check box
+Message
+Repeat
+Buffer
+H-Offset
+Select Font
+
+9
+10
+11
+12
+13
+14
+
+Send
+Message Preview
+Load Setting
+Save Setting
+Quit
+Position Preview
+Start to Run Text Overlay
+
+15
+16
+
+Get Resolution
+Current Resolution
+
+Set to Normal for a solid colored background;
+Set to Partial Transparency for a partially transparent background
+Set to Full Transparency for a transparent background
+Select the partial transparency shade
+Select the background color
+Set to Normal for solid colored text; Set to Partial Transparency for partially
+transparent text; Set to Full Transparency for transparent text (can be seen
+over a solid background)
+Select the partial transparency shade
+Select the text color
+Set the blank delay time
+Set the speed at which the text moves on the display
+Set to Static (fixed text) or Scrolling (text moves across the display)
+Set the number of messages you can send one after the other (from 1 to 3).
+The number of buffers limit the display height in relation to the output
+resolution, as defined in Table 7
+Set the thickness of the background stripe (height value is limited by the
+Number of Accessible Buffers and the output resolution, see Table 7)
+Set the vertical position of the text background on the display screen
+Connect the machine or disconnect
+When selected, set the IP Address and Port to connect via Ethernet2
+When selected, set the COM port and Baud Rate (115200 for VP-727) to
+connect via the RS-232 connector2
+Select VP725 when connected to a VP-725 series machine
+Select VP727 when connected to a VP-727 machine
+Type the desired text in the Message box
+Set the number of times that the text message will scroll across the screen3
+(1 to 20), or set to Forever to repeat the text message continuously
+Depending on the Number of Buffer, you can have up to 3 different text
+messages running over the background
+After selecting the Static mode, use the H-Offset box to select the horizontal
+position of the text
+Press to select the font and the font size. The text will change on
+the screen only after pressing the Send button
+Transmits the message to be displayed on the screen
+Press to show how the text overlay will look
+Press to load a previously saved setting
+Press to save the current setting
+Closes the program
+View the position of the text overlay (adjust via V-Position selector)
+Press to display the text on screen. The green button becomes a yellow
+“Stop Text Overlay” button. Press to stop scrolling on screen
+Press to read the current output resolution
+Displays the current output resolution
+
+1 Unavailable after pressing the “ Start to Run Text Overlay” button
+2 You have to select the connection type before connecting the software to the machine
+3 For example, set to 2 to repeat the text twice
+
+22
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Understanding the VP-727
+Table 7: Number of Buffers, Output Resolution and Maximum Display Height
+Maximum Display Height According to
+Number of Buffers
+
+8.6.1
+
+Output Resolution
+
+1
+
+2
+
+3
+
+640x480
+
+54
+
+36
+
+27
+
+800x600
+
+43
+
+29
+
+21
+
+832x624
+
+42
+
+28
+
+21
+
+852x480
+
+41
+
+27
+
+20
+
+1024x768
+
+34
+
+22
+
+17
+
+1280x720
+
+27
+
+18
+
+13
+
+1280x768
+
+27
+
+18
+
+13
+
+1280x1024
+
+27
+
+18
+
+13
+
+1366x768
+
+25
+
+17
+
+12
+
+1365x1024
+
+25
+
+17
+
+12
+
+1400x1050
+1600x1200
+
+25
+21
+
+16
+14
+
+12
+10
+
+480P
+
+48
+
+32
+
+24
+
+576P
+
+48
+
+32
+
+24
+
+720P
+
+27
+
+18
+
+13
+
+1080i
+
+18
+
+12
+
+9
+
+1080p
+
+18
+
+12
+
+9
+
+Downloading the TextOverlay Program
+
+To use the TextOverlay Application, download the Text Overlay software from
+our Web site1 and follow the on-screen instructions.
+8.6.2
+
+Setting the Text Message
+
+The text overlay parameters can be set before or after pressing the red Connect
+button.
+You can set the following parameters:
+Type the required text in the Message box and press Send
+Select the Background Color items and the Text Color items, including the
+Effect, the Normal Color and the Partial Transparency
+Select the Number of Buffer and the Display Height
+Set the V-Position
+Set the Blank Time and the scrolling Speed
+Set the Mode to Static or Scrolling
+If in the Static mode, set the text H – Offset
+If required, select the Buffer option2 (0 to 2) to send varying text messages
+1 Go to http://www.kramerelectronics.com
+2 This option can be used only if the Number of Buffer is other than 1
+
+23
+
+Understanding the VP-727
+
+Select the Repeating frequency (1 to 20 or Forever)
+Select the Font and Font size
+Table 8 describes when the setup parameters are available:
+Table 8: TextOverlay Parameters
+
+8.6.3
+
+The Parameter
+
+Before “Start to
+Run TextOverlay”
+
+Number of accessible buffers
+
+Yes
+
+Display height
+
+Yes
+
+Mode selection1
+
+Yes
+
+Text Color Effect
+
+Yes
+
+Background Color Effect
+
+Yes
+
+Get resolution
+
+Yes
+
+Needs
+Send?
+
+Normal Color (Text Color)
+
+No
+
+Normal Color (Background Color)
+V-Position (Text Position)
+
+No
+No
+
+Blank Time (sec)
+
+No
+
+Speed
+
+No
+
+Message
+
+Yes
+
+Repeat
+
+Yes
+
+Buffer
+
+Yes
+
+H-Offset
+
+Yes
+
+Select Font
+
+Yes
+
+Connecting and Disconnecting the TextOverlay Program
+
+To connect the TextOverlay program, do the following:
+1. Open the TextOverlay program.
+The TextOverlay application screen appears2.
+2. Select the VP-727 check box.
+3. Select the type of connection to be used3:
+When selecting RS-232, in the COM port box select the COM port
+you want to use and in the Baud Rate box, select 115200
+When selecting TCP/IP, in the IP Address box, type the machine IP
+and in the Port box type the port you want to use
+4. Press the red “ Connect” button.
+Once a connection is established, the red “ Connect” button changes to a
+green “ Disconnect” button, and the connection type boxes are disabled.
+
+1 Static or Scrolling
+2 If required you can load a previously saved setting and continue to step 4 in this procedure
+3 If you are loading a previously saved setting, the type of connection is already defined
+
+24
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Understanding the VP-727
+
+5. If required, type the text in the message box, and edit the text message
+(see section 8.6.2).
+6. Press the green “ Start to run Text Overlay” button.
+The green button changes to a yellow “ Stop Text Overlay” button.
+7. Click the Send button in the Send Text area.
+Text starts running over the display.
+If you need to change any of the settings while the text message is running, do
+so according to section 8.6.2.
+To disconnect the TextOverlay program, press the green Disconnect button or
+press the Quit button to exit the program.
+8.6.4
+
+Saving and Loading Settings
+
+You can save current settings at any time or load a previously saved setting.
+When loading a setting1, the TextOverlay program automatically disconnects
+and you need to reconnect it.
+
+1 A saved setting also includes the connection type (TCP/IP or RS-232)
+
+25
+
+Operating the VP-727
+
+9
+
+Operating the VP-727
+You can operate the VP-727 via the:
+OSD Menu, see section 9.1
+LCD Display, see section 9.2
+Infra-red Remote Control Transmitter, see section 9.3
+ETHERNET, see section 9.4
+CONTROL Panel, see section 9.5
+RS-232, see section 9.6
+
+9.1 Operating via the OSD MENU Screen
+The OSD superimposes a menu on the Preview screen from which you can
+control your VP-727. When the OSD front panel button is on, pressing the
+MENU button on the front panel or the Menu key on the infra-red remote
+control transmitter displays the first OSD screen1, the “ Preview Setting” screen.
+If the OSD is off, pressing the MENU button on the front panel or the Menu
+key on the infra-red remote control transmitter will not display the “ Menu
+screen” . In this case, you can navigate via the front panel LCD. Figure 10
+defines the five interactive icons each representing a Level 1 function:
+
+Preview
+Setting
+
+Program
+Setting
+
+Transition
+
+Utility
+
+Information
+
+Figure 10: Menu Screen Icons
+9.1.1
+
+Preview and Program Setting Commands
+
+Figure 11 and Table 9 define the Preview and Program Setting commands:
+
+Figure 11: Preview and Program Setting OSD Menus
+
+1 Or the last used OSD screen
+
+26
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Operating the VP-727
+Table 9: Preview and Program Setting OSD Menus
+Level 1
+Input
+
+Level 2
+Source
+Type
+Video Standard
+
+Calibration Contrast
+Brightness
+H-Position
+V-Position
+Saturation
+Frequency
+Phase
+Auto Gain
+Auto Image
+Color
+ICC1 Red
+1
+ICC Green
+1
+ICC Blue
+1
+ICC Yellow
+Gamma
+Color Temp.
+Scale
+Aspect Ratio
+Adjustment
+
+Zoom
+Adjustment
+
+PIP
+
+Output
+
+On/Off
+Source
+Size
+H-Size
+V-Size
+H-Position
+V-Position
+Resolution
+
+Level 3
+Channel 1 to 8 (selects the input source)
+RGBHV, RGBS (PC/Video), RGsB (PC/Video), HD Component,
+SD Component, Y/C or CV (selects the input signal type)
+Auto, NTSC, PAL, PAL-M, PAL Comb.-N, NTSC 4.43,
+SECAM or PAL 60 (selects the Video standard)
+
+Range
+
+Default
+
+–32 to 32
+–32 to 32
+–50 to 50
+–20 to 40
+–32 to 32
+–50 to 50
+0 to 31
+
+0
+0
+0
+0
+0
+0
+0
+
+Adjusts the red color
+0 to 30
+Adjusts the green color
+0 to 30
+Adjusts the blue color
+0 to 30
+Adjusts the yellow color
+0 to 30
+Adjusts the gamma
+0 to 30
+Adjusts the color temperature
+–32 to 32
+Aspect Ratio (selects the scaler mode): Anamorphic (displays
+the aspect ratio - usually 16:9), Virtual Wide (anamorphic plus
+non-linear scaling), Letterbox (the vertical line is expanded to full
+screen), Native (lets you set the native resolution according to
+the specifications of the plasma screen or projector), 4:3 Output
+(the width to height ratio is 4:3), or User Define
+Location (selects the native mode): Left + Up, Right + Up,
+Center, Left + Down, or Right + Down
+H-Zoom
+V-Zoom
+H-Pan
+V-Pan
+Zoom Ratio: Off, 150%, 200%, 225%, 250%, 275%, 300%,
+325%, 350%, 375% or 400% (selects the zoom ratio)
+H-Pan
+–64 to 64
+V-Pan
+–64 to 64
+On/Off
+Channel 1 to 8 (selects the PIP source)
+1/25, 1/16, 1/9, 1/4, Split, Custom
+
+15
+15
+15
+15
+15
+0
+
+0
+0
+0
+0
+0
+0
+
+128
+128
+–32 to 32 –32
+–32 to 32 –32
+
+640x480, 800x600, 832x624, 852x480, 1024x768, 1280x720,
+1280x768, 1280x1024, 1366x768, 1365x1024, 1400x1050,
+1600x1200, 480p, 576p, 720p, 1080i, 1080p or user define
+Refresh Rate
+50Hz, 60Hz, 75Hz or Frame Lock (based on chosen resolution)
+Test Pattern
+Off, 32 Gray Ramp, Sharpness, Red, Green, Blue, White, Black, Chessboard, Color
+Bar, Aspect Ratio, RGB Gray Ramp, Gamma Check (see section 9.1.1.1)
+Confirm/Discard
+Confirms the action / cancels the action
+User Mode Setting Values will be used when user define is selected as output resolution (see section 9.1.1.2)
+
+1 Independent Color Control
+
+27
+
+Operating the VP-727
+9.1.1.1 Preview / Program Setting Output Test Pattern Screens
+
+Figure 12 illustrates the Test Pattern screens1:
+
+32 Gray Ramp
+
+Sharpness
+
+Red
+
+Green
+
+Blue
+
+White
+
+Black
+
+Chessboard
+
+Color Bar
+
+Aspect Ratio
+
+RGB Gray Ramp
+
+Gamma Check
+
+Figure 12: Test Pattern Screens
+
+1 When selected, the test pattern is displayed after exiting from the OSD menu
+
+28
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Operating the VP-727
+9.1.1.2
+
+Preview / Program User Mode Output Setting
+
+Figure 13 and Table 10 define the parameters of the User Mode Setting1.
+
+Figure 13: User Mode Setting
+Table 10: User Mode Setting Definitions
+User Mode Setting Definitions
+HT:
+HW:
+HS:
+HA:
+HP:
+VT:
+VW:
+VS:
+VA:
+VP:
+OCLK:
+Delay:
+Set Current:
+
+Horizontal total
+Horizontal sync pulse width
+Horizontal active start point
+Horizontal active region
+Horizontal polarity
+Vertical total
+Vertical sync pulse width
+Vertical active start point
+Vertical active region
+Vertical polarity
+Output clock
+Delay
+Import the values of the currently selected output
+resolution into the User Mode Setting
+
+1 These values will be used when “ User Define” is selected as the output resolution
+
+29
+
+Operating the VP-727
+9.1.2
+
+Transition Commands
+
+Figure 14 illustrates the Transition screen:
+
+Figure 14: Transition OSD
+
+Set the transition direction via the Transition Effect Option, as Table 11
+defines:
+Table 11: Transition Effect Option Commands
+Level
+1
+Effect
+Mode
+Speed
+Effect
+Option
+
+Level 2
+
+Level 3
+
+Cut, Fade, Diagonal,
+Wipe, Circle, Square,
+Corner, Chessboard
+Swap, Follow
+Range: 1 to 5; Default: 3
+Diagonal
+Top left, Bottom
+left,
+Top right, Bottom
+right
+Wipe
+Left to right, Right
+to left, Up, Down
+Circle
+
+In, Out
+
+Square
+
+In, Out
+
+Corner
+
+Top left, Bottom
+left,
+Top right, Bottom
+right
+In, Out
+
+Chessboard
+
+Take
+
+30
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Operating the VP-727
+9.1.3
+
+Utility Commands
+
+Figure 15 and Table 12 define the Utility screen:
+Table 12: Utility OSD Setting
+Level 1
+TCP/IP Setting
+(see section
+9.1.3.1)
+
+Figure 15: Utility OSD
+
+Level 2
+DHCP
+IP Address
+Subnet Mask
+Gateway
+Apply
+1
+OSD Setting
+Size
+H-Position
+V-Position
+Time Out
+Misc. Setting
+Logo
+(see section
+Save Lock
+9.1.3.2)
+Input Lock
+Background
+Blank Color
+Save
+(see
+Setting 1 to 8
+Recall section Setting 1 to 8
+Erase 9.1.3.3) Setting 1 to 8
+Factory Reset
+
+9.1.3.1
+
+Cancel/OK
+
+Level 3 / Range
+On/Off
+
+Normal, Double
+–32 to 32
+0
+–32 to 32
+0
+3 to 60 or OFF2
+20
+On/Off
+On/Off
+On/Off
+Black/Blue
+Black/Blue
+Saves the setting
+Recalls the setting
+Erases one setting or
+all the settings
+
+TCP/IP Setting Commands
+
+Figure 16 and Table 13 define the TCP/IP Setting screen:
+Table 13: TCP/IP Setting OSD
+Feature
+DHCP3
+
+Figure 16: TCP/IP Setting OSD
+
+Function
+Allows the network administrator to
+distribute IP addresses from a central point
+and automatically send a new IP address
+when an Ethernet point is plugged into a
+different network location
+IP Address A 32-binary digit number that identifies
+each sender or receiver (within a network
+via a particular server or workstation) of data
+(HTML pages or e-mails) that is sent in
+packets across the Internet
+Subnet
+Allows the packet that arrives at the
+Mask
+gateway with its unique network number
+to be routed within the organization's
+internal gateways
+Gateway
+A network position serving as an entry to
+another network. On the Internet, a node or
+stopping point can be either a gateway
+node or a host (end-point) node
+
+1 For configuring the parameters of the OSD (on-screen display) window
+2 Setting the Time Out to OFF will display the OSD continuously, until you manually close it
+3 Dynamic Host Configuration Protocol
+
+31
+
+Operating the VP-727
+9.1.3.2 Misc Setting Commands
+
+The Misc Setting (illustrated in Figure 17) includes the Logo, Save Lock, Input
+Lock, Background and Blank Color commands.
+9.1.3.2.1
+
+Logo
+
+You can set the Kramer logo On or Off. When set to On (the default), it is
+displayed for 20 seconds upon initialization. If set to Off, it is disabled.
+9.1.3.2.2
+
+Save Lock
+
+The Save Lock complements the Panel Lock1. When set to On, the Save Lock
+function is used to select whether the status of the Panel lock is saved on power
+down, and then recalled when the unit is turned on again2.
+9.1.3.2.3
+
+Input Lock
+
+The Input Lock complements the Panel Lock1. When set to On, the Input Lock
+function is used to select whether the 8x2 Input buttons and the TAKE button
+are included in the buttons which are locked3.
+
+Figure 17: Misc Setting OSD
+
+1 For a description of how to lock the front panel using the PANEL LOCK button, see section 8.5
+2 If the Save Lock is OFF, the Panel Lock will be OFF when the machine is powered up (even if the Panel Lock was ON
+before the power was turned OFF)
+3 If the Input Lock is ON, access to the front panel buttons is blocked when Panel Lock is On, including the PROGRAM and
+PREVIEW INPUT selector front panel buttons, and the Program and Preview IR remote transmitter keys. When Input Lock is
+Off, then you can still access the 8x2 Input buttons and the TAKE button, even if the Panel Lock is On
+
+32
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Operating the VP-727
+9.1.3.3
+
+Save/Recall/Erase Setting Commands
+
+You can save/recall/ up to 8 settings. In each setting you can preserve the entire
+machine’s settings1. All parameters are saved/recalled, including the Universal
+Input configurations, ProcAmp settings, output resolutions, and so on. You can
+also erase a single setting or all of them.
+9.1.4
+
+Information Screen
+
+This screen shows information regarding the Preview and Program sources; the
+PIP sources; the output resolutions; and firmware versions.
+9.2 Operating via the Front Panel LCD Display
+You can control the VP-727 PREVIEW output from the front panel high
+contrast LCD Display, using the:
+Front panel OSD buttons: MENU, ENTER, , , , and
+Infra-red remote control transmitter (see Figure 19) keys: MENU, and the
+direction keys
+For example, to set the time out to 60 seconds via the LCD Display, using the
+front panel buttons, do the following:
+1. Turn the VP-727 unit ON, and press the OSD ON button (if selected).
+2. Press the appropriate front panel OSD buttons (as defined in Figure 18).
+
+Figure 18: Example of how to use the LCD Display
+
+1 This is useful, for example, for configuring the machine for multiple presentations. Up to 8 presentation configurations can
+be saved in the machine’s memory
+
+33
+
+Operating the VP-727
+
+9.3 Operating via the Infra-red Remote Control Transmitter
+You can control the VP-727 remotely, from the infra-red remote control
+transmitter (that has a range of up to 15 meters and is powered by two AAA
+size 1.5V DC batteries), as defined in Figure 19 and Table 14:
+Figure 19: Remote
+Transmitter
+
+Table 14: Remote Transmitter Functions
+Keys
+
+Function
+
+Power
+
+Cycles power
+
+2
+
+Take
+Lock
+
+1
+
+Pressing TAKE causes the transition to occur
+Locks/unlocks the front panel
+
+Cut
+
+3
+
+Selects an instantaneous transition from the PREVIEW output
+to the PROGRAM output
+
+Fade
+
+Selects a dissolved transition from the PREVIEW output to the
+PROGRAM output
+4
+Selects a Diagonal transition effect
+Selects a WIPE transition effect5
+6
+
+Selects a CIRCLE transition effect
+
+Selects a SQUARE transition effect6
+Selects a CORNER transition effect4
+6
+
+Selects a CHESSBOARD transition effect
+
+Adjusts the picture contrast, brightness,
+saturation, auto gain, and auto image
+Freezes the output video image
+
+PIP
+
+Separate keys
+for PREVIEW/
+PROGRAM
+Outputs
+
+Picture
+
+Save
+
+Saves the setting
+
+Recall
+
+Recalls the setting
+
+Freeze
+Blank
+
+Displays a blank screen
+Selects the picture-in-picture function
+
+Direction Consists of a set of 5 separate keys that allow maneuvering
+within an OSD screen
+Menu
+
+Displays the OSD Menu screen (or moves to the previous level
+in the OSD menu)
+
+OSD
+
+Activates/deactivates access to the OSD Menu
+
+Selector 8 separate selector keys for both the Program and the Preview
+outputs
+
+1 Puts the machine in standby mode and causes the IR Receiver / LED to light red (instead of green)
+2 The effect is only seen in PROGRAM Mode
+3 Only for setting up the unit for the effect. The effect will only occur when the Take button is pressed
+4 Choose the direction from where the effect starts: “ top left” , “ bottom left” , “ top right” or “ bottom right” (see section 9.1.2)
+5 Choose the direction from where the effect starts: “ left to right” , “ right to left” , “ up” or “ down” (see section 9.1.2)
+6 Choose the direction from where the effect starts: “ in” or “ out” (see section 9.1.2)
+
+34
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Operating the VP-727
+
+9.4 Operating via ETHERNET
+To control your VP-727 via the Ethernet/Serial Port, connect the ETHERNET
+port of the VP-727 to the Ethernet port of your PC1 and then install and
+configure the Ethernet Application (see section 9.4.1).
+9.4.1
+
+Installing and Running the Configuration Software
+
+To install the VP-727 Ethernet Application, do the following:
+1. Insert the product CD into your CD-ROM drive2.
+2. Save the zip file on your computer.
+3. Run the installer setup.
+4. Respond to the installation wizard prompts.
+5. Restart your system.
+9.4.2
+
+Configuring the Ethernet Connection
+
+Double click the VP727 Ethernet AP.exe icon. The VP727 Ethernet Application
+main dialog box appears (see Figure 20), with a configuration tab and a Control
+tab.
+9.4.2.1 The Configuration Screen
+
+Use the Configuration screen to discover the IP address of the device connected
+to your computer. Figure 20 and Table 15 define the Configuration tab.
+
+Figure 20: VP727 Ethernet Application Main Dialog Box (Configuration Tab)
+1 Or connect the serial port of your VP-727 to the serial port of your PC (see section 7.1)
+2 Or download the software from our Web site on http://www.kramerelectronics.com
+
+35
+
+Operating the VP-727
+Table 15: VP727 Ethernet Application Configuration Tab
+Button
+
+Function
+
+Autoscan
+Up
+Down
+Delete
+Add
+Save
+Load
+
+Press to automatically scan for connected machines
+Press to scroll down the Server list
+Press to scroll up the Server list
+Press to delete an IP number
+Press to manually add an IP Number or set up the RS-232 COM port
+Press to save Server settings
+Press to load Server settings
+
+To search for devices, click the Auto Scan button.
+Figure 21 shows a device found on the network, with the IP address assigned at
+the factory1.
+
+Figure 21: VP727 Control Application Search Panel Screen
+
+Check your machine IP number, and click Insert to accept it.
+
+Figure 22: Configuration Tab
+1 You can also set the IP address via the OSD menu, see section 9.1.3.1
+
+36
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Operating the VP-727
+
+To change the IP address of the unit1:
+Select the device on the list and then right-click it
+A selection box appears, stating “ Set IP Address” and “ Web Control” 2
+Select “ Set IP Address” , enter the new IP address and click Update
+The new IP address will appear on the screen
+
+Figure 23: Setting an IP Number
+9.4.3
+
+Control the VP-727 via the Ethernet/Serial Port
+
+To control the VP-727 via the Ethernet, do the following:
+1. On the VP727 Control Application screen, click the Control tab.
+The Control screen appears (see Figure 24).
+The Control tab includes a set of control buttons, which enable you to
+operate and control the machine via the Ethernet or serial ports,
+according to the configuration.
+2. Press one of the eight orange buttons (1 to 8) that appear on the top left
+side on the screen of the Control tab3.
+Control the selected machine via the control buttons on the screen4.
+
+1 The default IP address can be changed to fit your network system
+2 Pressing the Web Control option lets you access the unit’s Web page from which you can change different parameters, such
+as the IP address, enable/disable the DHCP client (DHCP is Dynamic Host Configuration Protocol), as well as setting the
+Baud rate (for example, 9600 or 115200)
+3 When a machine is connected, the button lights. Otherwise it is unavailable
+4 Button turns green
+
+37
+
+Operating the VP-727
+
+Figure 24: VP722 Control Application Main Dialog Box (Control Tab)
+
+The Control tab includes:
+All the front panel buttons
+A Connection Status area consisting of a connection indicator and the
+device IP number or COM port
+A Message area, recording all the operations performed on the machine
+When clicking the Kramer icon, on the top right, the AP information appears,
+including the version number.
+By pressing the Remote Control button on the Control tab, you can operate the
+machine via the virtual remote controller interface, for your convenience.
+9.5 Operating via the CONTROL Connector
+Not available at the time of printing1.
+9.6 Operating via RS-232
+You can control the VP-727 via the RS-232 port using the Kramer VP-727
+Control Application (see section 9.4.3).
+
+1 Go to our Web site: http://www.kramerelectronics.com
+
+38
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+Technical Specifications
+
+10 Technical Specifications
+Table 16 includes the technical specifications:
+1
+
+Table 16: Technical Specifications of the VP-727
+INPUTS:
+PREVIEW
+OUTPUT:
+PROGRAM
+OUTPUT:
+CONTROLS:
+ADDITIONAL
+CONTROLS:
+POWER SOURCE:
+DIMENSIONS:
+WEIGHT:
+ACCESSORIES:
+OPTIONS:
+
+8 sets of universal BNC connectors: R/Pr, G/Y/CV, B/Pb/C, Hs/Cs, and Vs, each
+programmable for use as CV, YC, RGB, YCbCr, YPbPr, RGBS or RGBHV
+1 x DVI-D on a DVI-I connector
+1 x VGA (VGA through UXGA) on an HD15F connector
+1 x RGBHV / YPbPr on BNC connectors
+1 x DVI-D on a DVI-I connector
+1 x VGA (VGA through UXGA) on an HD15F connector
+1 x RGBHV / YPbPr on BNC connectors
+Front panel buttons, high contrast LCD, IR remote control, ETHERNET, RS-232, and
+2
+RS-485, optional T-bar remote controller
+Freeze, zoom, different selectable vertical refresh rates, ProcAmp control, output image
+scaling, Picture-In-Picture, text overlay, and aspect ratio change
+100-240 VAC, 50/60Hz 55VA
+19” (W), 9.3” (D), 3RU (H) rack mountable
+5.5 kg. (12.2 lbs.) approx.
+IR remote control, power cord
+Control panel
+
+1 Specifications are subject to change without notice
+2 Not available at the time of printing
+
+39
+
+VP-727 Communication Protocol
+
+11 VP-727 Communication Protocol
+This addendum includes the Communication Protocol for the VP-727:
+Set and Get command:
+Set Command:
+Y Control_Type Function Param 1 ..... Param N CR
+Reply:
+Z Control_Type Function Param 1 ..... Param N CRDoneCR
+Get Command:
+Y Control_Type Function CR
+Example
+1.
+
+"Y 0 45 32 CR" -> set Preview Contrast value as 32
+"Z 0 45 32 CR"
+">CR" --> command setting success
+
+2.
+
+"Y 1 78 CR" -> get current Preview output resolution
+"Z 1 78 2 CR" -> current Preview resolution is 832x624
+Definition:
+: ASCII Code 0x20
+CR: ASCII Code 0xD or 0xA
+After set type Command setting, system will respond with a string.
+Baud rate: 115200bps, Start Bit: 1Bit, Data Bit: 8Bit, Parity Bit: NA, and Stop
+Bit: 1Bit.
+Table 17 defines the Set Commands:
+
+40
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+VP-727 Communication Protocol
+Table 17: Set Commands1
+Control Type
+
+F
+
+Param1
+
+-
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+
+0
+
+1
+
+42
+
+0
+
+1
+
+43
+
+0
+
+1
+
+44
+
+0
+0
+
+1
+1
+
+45
+46
+
+Power
+Panel Lock
+Take
+Cut
+Fade
+Diagonal
+Wipe
+Circle
+Square
+Corner
+Chessboard
+Preview Picture
+Preview Freeze
+Preview Blank
+Preview PIP
+Program Picture
+Program Freeze
+Program Blank
+Program PIP
+Up
+Down
+Left
+Right
+Menu
+Enter
+OSD
+Program Ch1
+Program Ch2
+Program Ch3
+Program Ch4
+Program Ch5
+Program Ch6
+Program Ch7
+Program Ch8
+Preview Ch1
+Preview Ch2
+Preview Ch3
+Preview Ch4
+Preview Ch5
+Preview Ch6
+Preview Ch7
+Preview Ch8
+0: Channel 1; 1: Channel 2; 2: Channel 3; 3: Channel 4; 4:
+Preview Input Source
+Channel 5; 5: Channel 6; 6: Channel 7; 7: Channel 8
+0: RGBHV; 1: RGBS(PC); 2: RGsB(PC); 3: ED/HD Component;
+4: SD Component; 5: RGBS(Video); 6: RGsB(Video); 7: Y/C; 8: Preview Input Type
+Video
+0: Auto; 1: NTSC; 2: PAL; 3: PAL-M; 4: PAL-N; 5: NTSC 4.43;
+Preview Input Video Standard
+6: SECAM; 7: PAL 60
+-32 ~ 32
+Preview Calibration Contrast
+-32 ~ 32
+Preview Calibration Brightness
+
+Set
+
+Get
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Function Description
+
+1 F = Function
+
+41
+
+VP-727 Communication Protocol
+Control Type
+
+F
+
+Param1
+
+Function Description
+
+1
+1
+1
+1
+1
+1
+
+47
+48
+49
+50
+51
+52
+53
+54
+
+-32 ~ 32
+-50 ~ 50
+0 ~ 31
+-32 ~ 32
+
+Preview Calibration H-Position
+Preview Calibration V-Position
+Preview Calibration Saturation
+Preview Calibration Frequency
+Preview Calibration Phase
+Preview Calibration Auto Gain
+Preview Calibration Auto Image
+Preview Calibration Tint
+
+0
+0
+
+1
+1
+
+55
+56
+
+-32 ~ 64
+0 ~ 30
+
+Preview Calibration Sharpness
+Preview Color ICC R
+
+0
+
+1
+
+57
+
+0 ~ 30
+
+Preview Color ICC G
+
+0
+0
+0
+0
+
+1
+1
+1
+1
+
+58
+59
+60
+61
+
+Preview Color ICC B
+Preview Color ICC Y
+Preview Color Gamma
+Preview Color Temp
+
+0
+
+1
+
+62
+
+0
+0
+
+1
+1
+
+63
+64
+
+0
+
+1
+
+65
+
+0
+
+1
+
+66
+
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+
+67
+68
+69
+70
+71
+
+0
+
+1
+
+72
+
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+
+73
+74
+75
+76
+77
+
+0
+
+1
+
+78
+
+0
+
+1
+
+79
+
+0
+
+1
+
+80
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+
+0 ~ 30
+0 ~ 30
+0 ~ 30
+-32 ~ 32
+0: Off; 1: 150%; 2: 200%; 3: 225%; 4: 250%; 5: 275%; 6: 300%;
+7: 325%; 8: 350%; 9: 375%; 10: 400%
+-64 ~ 64
+-64 ~ 64
+0: Anamorphic; 1: Virtual Wide; 2: Letterbox; 3: Native; 4: 4:3
+Output; 5: User define
+0: Left + Up; 1: Right + Up; 2: Center; 3: Left + Down; 4: Right +
+Down
+-32 ~ 32
+-32 ~ 32
+-32 ~ 32
+-32 ~ 32
+0: Off; 1: On
+0: Channel 1; 1: Channel 2; 2: Channel 3; 3: Channel 4; 4:
+Channel 5; 5: Channel 6; 6: Channel 7; 7: Channel 8
+0: 1/25; 1: 1/16; 2: 1/9; 3: 1/4; 4: Split; 5: Custom
+1 ~ 255
+1 ~ 255
+-32 ~ 32
+-32 ~ 32
+0: 640x480; 1: 800x600; 2: 832x624; 3: 852x480; 4: 1024x768;
+5: 1280x720; 6: 1280x768; 7: 1280x1024; 8: 1366x768; 9:
+1365x1024; 10: 1400x1050; 11: 1600x1200; 12: 480p; 13:
+576p; 14: 720p; 15: 1080i; 16: 1080p; 17: User define
+0: 50; 1: 60; 2: 75
+0: Off; 1: 32 Gray Ramp; 2: Sharpness; 3: Red; 4: Green; 5:
+Blue; 6: White; 7: Black; 8: Chessboard; 9: Color Bar; 10:
+Aspect Ratio; 11: RGB Gray Steps; 12: Gamma Check
+1 ~ 4095
+1 ~ 511
+1 ~ 511
+1 ~ 2047
+0: -; 1: +
+1 ~ 4095
+1 ~ 31
+1 ~ 127
+1 ~ 2047
+0: -; 1: +
+
+Set
+
+Get
+
+0
+0
+0
+0
+0
+0
+0
+0
+
+42
+
+Preview Scale Zoom Ratio
+Preview Scale Zoom H-Pan
+Preview Scale Zoom V-Pan
+Preview Scale Aspect Ratio
+Preview Scale Native Location
+Preview Scale Aspect Ratio Hor Zoom
+Preview Scale Aspect Ratio Ver Zoom
+Preview Scale Aspect Ratio Hor Pan
+Preview Scale Aspect Ratio Ver Pan
+Preview PIP On/Off
+Preview PIP Source
+Preview PIP Size
+Preview PIP H-Size
+Preview PIP V-Size
+Preview PIP H-Position
+Preview PIP V-Position
+Preview Output Resolution
+Preview Output Refresh Rate
+Preview Output Test Pattern
+Preview Output User Mode HT
+Preview Output User Mode HW
+Preview Output User Mode HS
+Preview Output User Mode HA
+Preview Output User Mode HP
+Preview Output User Mode VT
+Preview Output User Mode VW
+Preview Output User Mode VS
+Preview Output User Mode VA
+Preview Output User Mode VP
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+VP-727 Communication Protocol
+Control Type
+
+F
+
+Param1
+
+Function Description
+
+Set
+
+Get
+
+0
+0
+0
+
+1
+1
+-
+
+0
+
+1
+
+0
+
+1
+
+0
+
+1
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+
+0
+
+1
+
+0
+0
+
+1
+1
+
+0
+
+1
+
+0
+
+1
+
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+
+0
+
+1
+
+0
+0
+0
+
+1
+1
+1
+
+911 6 ~ 200
+Preview Output User Mode OCLK
+92 0 ~ 255
+Preview Output User Mode Delay
+93 Preview Output User Mode SetCurrent
+0: Channel 1; 1: Channel 2; 2: Channel 3; 3: Channel 4; 4:
+94
+Program Input Source
+Channel 5; 5: Channel 6; 6: Channel 7; 7: Channel 8
+0: RGBHV; 1: RGBS(PC); 2: RGsB(PC); 3: ED/HD Component;
+95 4: SD Component; 5: RGBS(Video); 6: RGsB(Video); 7: Y/C; 8: Program Input Type
+Video
+0: Auto; 1: NTSC; 2: PAL; 3: PAL-M; 4: PAL-N; 5: NTSC 4.43;
+96
+Program Input Video Standard
+6: SECAM; 7: PAL 60
+97 -32 ~ 32
+Program Calibration Contrast
+98 -32 ~ 32
+Program Calibration Brightness
+99 Program Calibration H-Position
+100 Program Calibration V-Position
+101 -32 ~ 32
+Program Calibration Saturation
+102 -50 ~ 50
+Program Calibration Frequency
+103 0 ~ 31
+Program Calibration Phase
+104 Program Calibration AutoGain
+105 Program Calibration AutoImage
+106 -32 ~ 32
+Program Calibration Tint
+107 -32 ~ 64
+Program Calibration Sharpness
+108 0 ~ 30
+Program Color ICC R
+109 0 ~ 30
+Program Color ICC G
+110 0 ~ 30
+Program Color ICC B
+111 0 ~ 30
+Program Color ICC Y
+112 0 ~ 30
+Program Color Gamma
+113 -32 ~ 32
+Program Color Color Temp
+0: Off; 1: 150%; 2: 200%; 3: 225%; 4: 250%; 5: 275%; 6: 300%;
+114
+Program Scale Zoom Ratio
+7: 325%; 8: 350%; 9: 375%; 10: 400%
+115 -64 ~ 64
+Program Scale Zoom H-Pan
+116 -64 ~ 64
+Program Scale Zoom V-Pan
+0: Anamorphic; 1: Virtual Wide; 2: Letterbox; 3: Native; 4: 4:3
+117
+Program Scale Aspect Ratio
+Output; 5: User define
+0: Left + Up; 1: Right + Up; 2: Center; 3: Left + Down; 4: Right +
+118
+Program Scale Native Location
+Down
+119 -32 ~ 32
+Program Scale Aspect RatioHorZoom
+120 -32 ~ 32
+Program Scale Aspect RatioVerZoom
+121 -32 ~ 32
+Program Scale Aspect RatioHorPan
+122 -32 ~ 32
+Program Scale Aspect RatioVerPan
+123 0: Off; 1: On
+Program PIP On/Off
+0: Channel 1; 1: Channel 2; 2: Channel 3; 3: Channel 4; 4:
+124
+Program PIP Source
+Channel 5; 5: Channel 6; 6: Channel 7; 7: Channel 8
+125 0: 1/25; 1: 1/16; 2: 1/9; 3: 1/4; 4: Split; 5: Custom
+Program PIP Size
+126 1 ~ 255
+Program PIP H-Size
+127 1 ~ 255
+Program PIP V-Size
+
+0
+
+1
+
+128 -32 ~ 32
+
+Program PIP H-Position
+
+0
+
+1
+
+129 -32 ~ 32
+
+Program PIP V-Position
+
+0
+
+1
+
+0
+
+1
+
+0: 640x480; 1: 800x600; 2: 832x624; 3: 852x480; 4: 1024x768;
+5: 1280x720; 6: 1280x768; 7: 1280x1024; 8: 1366x768; 9:
+Program Output Resolution
+130
+1365x1024; 10: 1400x1050; 11: 1600x1200; 12: 480p; 13:
+576p; 14: 720p; 15: 1080i; 16: 1080p; 17: User define
+131 0: 50; 1: 60; 2: 75
+Program Output RefreshRate
+
+1 Param 2 = 0 ~ 999
+
+43
+
+VP-727 Communication Protocol
+Control Type
+Set
+
+Get
+
+0
+
+1
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+-
+
+0
+
+1
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+-
+
+F
+
+Param1
+
+Function Description
+
+0: Off; 1: 32 Gray Ramp; 2: Sharpness; 3: Red; 4: Green; 5:
+132 Blue; 6: White; 7: Black; 8: Chessboard; 9: Color Bar; 10:
+Aspect Ratio; 11: RGB Gray Steps; 12: Gamma Check
+133 1 ~ 4095
+134 1 ~ 511
+135 1 ~ 511
+136 1 ~ 2047
+137 0: -; 1: +
+138 1 ~ 4095
+139 1 ~ 31
+140 1 ~ 127
+141 1 ~ 2047
+142 0: -; 1: +
+1431 6 ~ 200
+144 0 ~ 255
+145 0: Cut; 1: Fade; 2: Diagonal; 3: Wipe; 4: Circle; 5: Square; 6:
+146
+Corner; 7: Chessboard
+147 1 ~ 5
+148 0: Top left; 1: Bottom left; 2: Top right; 3: Bottom right
+149 0: Left to right; 1: Right to left; 2: Up; 3: Down
+150 0: In; 1: Out
+151 0: In; 1: Out
+152 0: Top left; 1: Bottom left; 2: Top right; 3: Bottom right
+153 0: In; 1: Out
+154 155 0: Off; 1: On
+1562 0 ~ 255
+1572 0 ~ 255
+1582 0 ~ 255
+159 160 0: Normal; 1: Double
+161 -32 ~ 32
+162 -32 ~ 32
+163 3 ~ 60
+164 0: Off; 1: On
+165 0: Off; 1: On
+166 0: Off; 1: On
+167 168 169 170 171 172 173 174 175 176 177 178 179 -
+
+Program Output Test Pattern
+Program Output User Mode HT
+Program Output User Mode HW
+Program Output User Mode HS
+Program Output User Mode HA
+Program Output User Mode HP
+Program Output User Mode VT
+Program Output User Mode VW
+Program Output User Mode VS
+Program Output User Mode VA
+Program Output User Mode VP
+Program Output User Mode OCLK
+Program Output User Mode Delay
+Program Output User Mode SetCurrent
+Transition Effect
+Transition Speed
+Transition Diagonal Option
+Transition Wipe Option
+Transition Circle Option
+Transition Square Option
+Transition Corner Option
+Transition Chessboard Option
+Transition Take
+TCPIP DHCP
+TCPIP IP Address
+TCPIP Subnet Mask
+TCPIP Gateway
+TCPIP Apply
+OSD Setting Size
+OSD Setting HorPosition
+OSD Setting VerPosition
+OSD Setting TimeOut
+Misc Logo
+Misc SaveLock
+Misc InputLock
+Save Setting 1
+Save Setting 2
+Save Setting 3
+Save Setting 4
+Save Setting 5
+Save Setting 6
+Save Setting 7
+Save Setting 8
+Recall Setting 1
+Recall Setting 2
+Recall Setting 3
+Recall Setting 4
+Recall Setting 5
+
+1 Param 2 = 0 ~ 999
+2 Param 2 = 0 ~ 255, Param 3 = 0 ~ 255, and Param 4 = 0 ~ 255
+
+44
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+VP-727 Communication Protocol
+Control Type
+Set
+
+Get
+
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+-
+
+Control Type
+Set
+Get
+
+F
+
+Param1
+
+Function Description
+
+180 181 182 183 0: Cancel; 1: Ok
+184 185 186 187 188 189 195 0: Off; 1: On
+196 0: Off; 1: On
+197 0: Off; 1: On
+198 0: Off; 1: On
+199 0: Off; 1: On
+200 0: Off; 1: On
+201 0: Off; 1: On
+202 0: Off; 1: On
+203 204 205 206 207 208 209 210 211 -
+
+Recall Setting 6
+Recall Setting 7
+Recall Setting 8
+Factory Reset
+Preview Main Standard
+Preview PIP Type
+Preview PIP Standard
+Program Main Standard
+Program PIP Type
+Program PIP Standard
+Preview Freeze
+Preview Blank
+Program Freeze
+Program Blank
+Panel Lock
+OSD
+Power
+Take
+Erase Setting 1
+Erase Setting 2
+Erase Setting 3
+Erase Setting 4
+Erase Setting 5
+Erase Setting 6
+Erase Setting 7
+Erase Setting 8
+Erase All
+
+F
+
+Param1
+
+1
+
+0~3267
+1->ON, 0->OFF
+bit 0: Chessboard
+bit 1: Panel lock
+bit 2: Menu
+212 bit 3: Enter
+bit 4: Left
+bit 5: Up
+bit 6: Down
+bit 7: Right
+bit 8: OSD
+
+0
+
+1
+
+213
+
+0
+
+1
+
+0
+
+1
+
+0
+
+1
+
+0: Swap
+1: Follow
+0: Black
+214
+1: Blue
+0: Black
+215
+1: Blue
+0: Off
+216
+1: On
+
+Param2
+
+Param3
+
+0~32767
+0~32767
+1->ON, 0->OFF
+1-> ON, 0->OFF
+bit 0: Program Channel 8 bit 0: Preview Channel 1
+bit 1: Preview Freeze
+bit 1: Program Channel 1
+bit 2: Program Freeze
+bit 2: Preview Channel 2
+bit 3: Preview Blank
+bit 3: Program Channel 2
+bit 4: Program Blank
+bit 4: Preview Channel 3
+bit 5: Preview PIP
+bit 5: Program Channel 3
+bit 6: Program PIP
+bit 6: Preview Channel 4
+bit 7: Take
+bit 7: Program Channel 4
+bit 8: Cut
+bit 8: Preview Channel 5
+bit 9: Diagonal
+bit 9: Program Channel 5
+bit 10: Circle
+bit 10: Preview Channel 6
+bit 11: Corner
+bit 11: Program Channel 6
+bit 12: Fade
+bit 12: Preview Channel 7
+bit 13: Wipe
+bit 13: Program Channel 7
+bit 14: Square
+bit 14: Preview Channel 8
+
+Function
+Description
+
+Keypad LED
+status
+
+Take Mode
+Background
+Blank Color
+
+45
+
+VP-727 Communication Protocol
+Control Type
+Set
+Get
+0
+
+1
+
+0
+
+1
+
+0
+
+1
+
+0
+
+1
+
+46
+
+F
+
+Param1
+
+Param2
+
+Param3
+
+Function
+Description
+
+0: User 1
+217 1: User 2
+2: User 3
+0: User 1
+218 1: User 2
+2: User 3
+0 = no damping
+1 = minimum damping
+2 = low damping
+219
+3 = medium (factory
+default)
+4 = maximum damping
+220 16~240
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+VP-727 Text Overlay Protocol
+
+12 VP-727 Text Overlay Protocol
+Table 18 includes the Text Overlay Protocol.
+Each command includes three parameters: P1, P2 and P3.
+Table 18: Text Overlay Protocol of the VP-727
+1
+
+Functions
+Display Buffer
+Configuration
+
+Command
+T12ED ** **
+**
+
+P1
+Page No.
+of Buffer
+
+P2
+Page
+Width
+
+P3
+Page
+Height
+
+2
+
+V-Position
+
+T13EC **
+
+NA
+
+NA
+
+3
+
+H-Position
+
+T14EB **
+
+NA
+
+NA
+
+1~2047, Non Used
+
+4
+
+Text Color Effect
+
+T16E9 **
+
+Vertical
+Location
+Horizontal
+Location
+Mode
+
+Comments
+No of page <= 7
+Buffer size limitation: Width * Height *
+(Page No+1) <= 70KB
+1~2047
+
+NA
+
+NA
+
+5
+
+Text RGB Color
+
+R
+
+G
+
+B
+
+6
+
+Text Partial
+Transparency
+Color
+Background Color
+Effect
+
+T17E8 ** **
+**
+T18E7 ** **
+**
+
+Mode:
+0: Transparency
+1: Partial Transparency
+2: Normal
+RGB color 0-255
+
+R
+
+G
+
+B
+
+RGB color 0-255
+
+T19E6 **
+
+Mode
+
+NA
+
+NA
+
+T1AE5 ** **
+**
+T1BE4 ** **
+**
+
+R
+
+G
+
+B
+
+R
+
+G
+
+B
+
+RGB color 0-255
+
+10
+
+Background RGB
+Color
+Background Partial
+Transparency
+Color
+TextOverlay On
+
+0: Transparency
+1: Partial Transparency
+2: Normal
+RGB color 0-255
+
+T1CE3
+
+NA
+
+NA
+
+NA
+
+Enable TextOverlay
+
+11
+
+TextOverlay Off
+
+T1DE2
+
+NA
+
+NA
+
+NA
+
+Disable TextOverlay
+
+12
+
+Blank Time
+
+T1EE1 **
+
+Seconds
+
+NA
+
+NA
+
+Time between Two Strings, 0-30Sec
+
+13
+
+Text Bitmap
+Download Start
+TextOverlay Mode
+
+T1FE0
+
+NA
+
+NA
+
+NA
+
+PC start to send bit string
+
+T20DF **
+
+Mode
+
+NA
+
+NA
+
+Text H-Shift (only
+available for static
+mode)
+Speed
+
+T21DE ** **
+
+Page
+
+NA
+
+T22DD ** **
+
+Refresh
+rate
+
+H
+locatio
+n
+Step
+Size
+
+0: Scroll
+1: Static
+Text placement on H location
+Page: Which string active
+H location < 32767
+Refresh rate: 10-100ms
+(Slow – fast)
+Step Size: 1-10 pixels
+
+7
+8
+9
+
+14
+15
+16
+
+NA
+
+Command handshake: Only leading character for command start and no ending code.
+Bit map file format: It is a raster scan image with 1 bit. 0 for background and 1 for text. The 0, 1 is ASCII
+code.
+T1FE0001100010010010010011110010010; send bitmap as following image
+
+47
+
+LIMITED WARRANTY
+
+Kramer Electronics (hereafter Kramer) warrants this product free from defects in material and workmanship under the
+following terms.
+HOW LONG IS THE WARRANTY
+
+Labor and parts are warranted for seven years from the date of the first customer purchase.
+WHO IS PROTECTED?
+
+Only the first purchase customer may enforce this warranty.
+WHAT IS COVERED AND WHAT IS NOT COVERED
+
+Except as below, this warranty covers all defects in material or workmanship in this product. The following are not covered
+by the warranty:
+1. Any product which is not distributed by Kramer, or which is not purchased from an authorized Kramer dealer. If you are
+uncertain as to whether a dealer is authorized, please contact Kramer at one of the agents listed in the Web site
+www.kramerelectronics.com.
+2. Any product, on which the serial number has been defaced, modified or removed.
+3. Damage, deterioration or malfunction resulting from:
+i) Accident, misuse, abuse, neglect, fire, water, lightning or other acts of nature
+ii) Product modification, or failure to follow instructions supplied with the product
+iii) Repair or attempted repair by anyone not authorized by Kramer
+iv) Any shipment of the product (claims must be presented to the carrier)
+v) Removal or installation of the product
+vi) Any other cause, which does not relate to a product defect
+vii) Cartons, equipment enclosures, cables or accessories used in conjunction with the product
+WHAT WE WILL PAY FOR AND WHAT WE WILL NOT PAY FOR
+
+We will pay labor and material expenses for covered items. We will not pay for the following:
+1. Removal or installations charges.
+2. Costs of initial technical adjustments (set-up), including adjustment of user controls or programming. These costs are the
+responsibility of the Kramer dealer from whom the product was purchased.
+3. Shipping charges.
+HOW YOU CAN GET WARRANTY SERVICE
+
+1. To obtain service on you product, you must take or ship it prepaid to any authorized Kramer service center.
+2. Whenever warranty service is required, the original dated invoice (or a copy) must be presented as proof of warranty
+coverage, and should be included in any shipment of the product. Please also include in any mailing a contact name,
+company, address, and a description of the problem(s).
+3. For the name of the nearest Kramer authorized service center, consult your authorized dealer.
+LIMITATION OF IMPLIED WARRANTIES
+
+All implied warranties, including warranties of merchantability and fitness for a particular purpose, are limited in duration to
+the length of this warranty.
+EXCLUSION OF DAMAGES
+
+The liability of Kramer for any effective products is limited to the repair or replacement of the product at our option. Kramer shall
+not be liable for:
+1. Damage to other property caused by defects in this product, damages based upon inconvenience, loss of use of the product, loss
+of time, commercial loss; or:
+2. Any other damages, whether incidental, consequential or otherwise. Some countries may not allow limitations on how long an
+implied warranty lasts and/or do not allow the exclusion or limitation of incidental or consequential damages, so the above
+limitations and exclusions may not apply to you.
+This warranty gives you specific legal rights, and you may also have other rights, which vary from place to place.
+NOTE: All products returned to Kramer for service must have prior approval. This may be obtained from your dealer.
+This equipment has been tested to determine compliance with the requirements of:
+EN-50081:
+EN-50082:
+CFR-47:
+
+"Electromagnetic compatibility (EMC);
+generic emission standard.
+Part 1: Residential, commercial and light industry"
+"Electromagnetic compatibility (EMC) generic immunity standard.
+Part 1: Residential, commercial and light industry environment".
+FCC Rules and Regulations:
+Part 15: “ Radio frequency devices
+Subpart B Unintentional radiators”
+
+CAUTION!
+
+Servicing the machines can only be done by an authorized Kramer technician. Any user who makes changes or
+modifications to the unit without the expressed approval of the manufacturer will void user authority to operate the
+equipment.
+Use the supplied DC power supply to feed power to the machine.
+Please use recommended interconnection cables to connect the machine to other components.
+
+48
+
+KRAMER: SIMPLE CREATIVE TECHNOLOGY
+
+For the latest information on our products and a list of Kramer
+distributors, visit our Web site: www.kramerelectronics.com,
+where updates to this user manual may be found.
+We welcome your questions, comments and feedback.
+
+Safety Warning:
+
+Disconnect the unit from the power supply before
+opening/servicing.
+
+Caution
+
+Kramer Electronics, Ltd.
+
+Web site: www.kramerelectronics.com
+E-mail: info@kramerel.com
+P/N: 2900-000076 REV 3
+
+

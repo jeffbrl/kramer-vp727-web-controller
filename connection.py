@@ -28,6 +28,8 @@ class ScalerConnection:
         self.firmware_generation: Optional[int] = None
         self.program_source: Optional[int] = None
         self.preview_source: Optional[int] = None
+        self.program_input_type: Optional[int] = None
+        self.preview_input_type: Optional[int] = None
         self.panel_locked: bool = True  # Default to True as per example status response
 
         self._stream: Optional[anyio.abc.ByteStream] = None
@@ -135,9 +137,15 @@ class ScalerConnection:
         await anyio.sleep(0.5)  # Let connection stabilize briefly
         try:
             logger.info("Querying firmware version and active program bus...")
-            await self.send_command("Y 0 57")
+            await self.send_command("Y 1 57")
             await anyio.sleep(0.1)
-            await self.send_command("Y 0 91")
+            await self.send_command("Y 1 94")
+            await anyio.sleep(0.1)
+            await self.send_command("Y 1 42")
+            await anyio.sleep(0.1)
+            await self.send_command("Y 1 43")
+            await anyio.sleep(0.1)
+            await self.send_command("Y 1 95")
         except Exception as e:
             logger.error("Startup query failed: %s", e)
 
@@ -162,7 +170,7 @@ class ScalerConnection:
             await anyio.sleep(interval)
             logger.debug("Sending keepalive query to scaler...")
             try:
-                await self.send_command("Y 0 91")
+                await self.send_command("Y 1 94")
             except Exception as e:
                 logger.warning("Failed to send keep-alive: %s", e)
                 raise  # Raise to propagate and trigger connection teardown/restart
@@ -212,30 +220,43 @@ class ScalerConnection:
             except ValueError:
                 pass
 
-        elif cmd == "91" and len(parts) >= 4:
-            # Query active program response: Z 0 91 <input> -1
+        elif cmd == "42" and len(parts) >= 4:
+            # Preview input source response: Z 0 42 <channel> or Z 1 42 <channel>
             try:
-                val = int(parts[3])
+                val = int(parts[3]) + 1
+                if self.preview_source != val:
+                    self.preview_source = val
+                    state_changed = True
+            except ValueError:
+                pass
+
+        elif cmd == "94" and len(parts) >= 4:
+            # Program input source response: Z 0 94 <channel> or Z 1 94 <channel>
+            try:
+                val = int(parts[3]) + 1
                 if self.program_source != val:
                     self.program_source = val
                     state_changed = True
             except ValueError:
                 pass
 
-        elif cmd == "1" and len(parts) >= 5:
-            # Route response: Z 0 1 <input> <destination_bus>
-            # Bus 1 = Program, Bus 2 = Preview
+        elif cmd == "43" and len(parts) >= 4:
+            # Preview input type response: Z 0 43 <type>
             try:
-                input_ch = int(parts[3])
-                bus = int(parts[4])
-                if bus == 1:
-                    if self.program_source != input_ch:
-                        self.program_source = input_ch
-                        state_changed = True
-                elif bus == 2:
-                    if self.preview_source != input_ch:
-                        self.preview_source = input_ch
-                        state_changed = True
+                val = int(parts[3])
+                if self.preview_input_type != val:
+                    self.preview_input_type = val
+                    state_changed = True
+            except ValueError:
+                pass
+
+        elif cmd == "95" and len(parts) >= 4:
+            # Program input type response: Z 0 95 <type>
+            try:
+                val = int(parts[3])
+                if self.program_input_type != val:
+                    self.program_input_type = val
+                    state_changed = True
             except ValueError:
                 pass
 
@@ -251,9 +272,20 @@ class ScalerConnection:
                 )
                 state_changed = True
 
+            # Also swap local input types if known
+            if self.program_input_type is not None and self.preview_input_type is not None:
+                self.program_input_type, self.preview_input_type = (
+                    self.preview_input_type,
+                    self.program_input_type,
+                )
+                state_changed = True
+
             # Fire off a query to verify program source
             if self._tg is not None:
-                self._tg.start_soon(self.send_command, "Y 0 91")
+                self._tg.start_soon(self.send_command, "Y 1 94")
+                self._tg.start_soon(self.send_command, "Y 1 42")
+                self._tg.start_soon(self.send_command, "Y 1 43")
+                self._tg.start_soon(self.send_command, "Y 1 95")
 
         elif cmd == "161":
             # Custom resolution timings written: Z 0 161 1
